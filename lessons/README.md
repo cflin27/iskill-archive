@@ -12,6 +12,8 @@ datasets.
 
 ## Index
 
+- [experiment-methodology.md](experiment-methodology.md): cache, async overlap,
+  allocator state, and precision/determinism lessons.
 - [templates/lesson.md](templates/lesson.md): lesson entry template.
 
 ## Promotion Rule

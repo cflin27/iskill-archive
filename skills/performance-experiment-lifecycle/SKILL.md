@@ -92,3 +92,14 @@ The report must distinguish:
 - profile explanation,
 - correctness evidence,
 - limitations and not-run items.
+
+## Method References
+
+- [cache-methodology.md](references/cache-methodology.md): avoid mistaking
+  repeated-input cache hits for general speedups.
+- [async-overlap-validation.md](references/async-overlap-validation.md): prove
+  useful overlap before promoting asynchronous changes.
+- [allocator-isolation.md](references/allocator-isolation.md): keep baseline and
+  candidate allocator state comparable.
+- [precision-determinism.md](references/precision-determinism.md): keep
+  precision, determinism, and performance modes separate.
