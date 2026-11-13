@@ -10,6 +10,12 @@ materials/prs/<repo-or-pr-id>/
 └── review-response.md
 ```
 
+## Current Public Archives
+
+- [vllm-omni-h3-ascend-prs-20261112](vllm-omni-h3-ascend-prs-20261112/):
+  public-safe archive for six cflin27 MiniMax-H3 Ascend PRs in
+  `vllm-project/vllm-omni`.
+
 `_example-public-pr/` is a skeleton only, not validation evidence.
 
 Add real entries only after confirming that every input, branch, model, metric,

@@ -11,6 +11,11 @@ Markdown summaries with public links and reproducible public inputs.
 - `prs/`: one subdirectory per public PR, RFC, or topic.
   `prs/_example-public-pr/` is a skeleton only.
 
+## Current Archives
+
+- [prs/vllm-omni-h3-ascend-prs-20261112](prs/vllm-omni-h3-ascend-prs-20261112/):
+  six public cflin27 MiniMax-H3 Ascend PRs for `vllm-project/vllm-omni`.
+
 ## New Archive Checklist
 
 1. Start from the templates.

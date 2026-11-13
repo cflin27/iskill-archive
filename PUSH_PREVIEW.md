@@ -1,6 +1,7 @@
-# Push Preview: Initial iskill-archive Draft
+# Push Preview: iskill-archive Content
 
-Status: not pushed. Awaiting user approval.
+Status: initial archive pushed; current update adds public-safe Omni PR
+materials.
 
 ## Purpose
 
@@ -36,6 +37,9 @@ and public contribution material. The repository is designed around
 - `materials/`: public-safe PR/RFC/validation archive policy and templates.
 - `materials/prs/_example-public-pr/`: clearly labeled example skeleton for a
   future public PR archive; it is not real validation evidence.
+- `materials/prs/vllm-omni-h3-ascend-prs-20261112/`: public-safe archive for
+  six cflin27 MiniMax-H3 Ascend PRs in `vllm-project/vllm-omni`, summarizing
+  public reproduction links, validation results, limits, and review responses.
 
 ## Explicitly Excluded
 
@@ -56,16 +60,16 @@ source basis. The experiment lifecycle skill captures the generic local
 agile/formal/profile method without private cases or paths. Future skills and
 material archives should carry source links at the skill or per-archive level.
 
-## Approval Gate
+## Push Target
 
-After approval, push this draft to:
+Push updates to:
 
 ```text
 https://github.com/cflin27/iskill-archive
 ```
 
-Suggested commit message:
+Latest suggested commit message:
 
 ```text
-Initialize public skill archive
+Add vLLM-Omni H3 Ascend PR materials
 ```
