@@ -19,6 +19,7 @@ human entry point.
 ## Repository Map
 
 - [skills/](skills/README.md): reusable TRAE-style skills.
+- [lessons/](lessons/README.md): short public-safe lessons and lesson template.
 - [materials/](materials/README.md): public PR/RFC/validation archive templates.
 - [PUSH_PREVIEW.md](PUSH_PREVIEW.md): current staged content awaiting approval.
 
@@ -30,6 +31,12 @@ human entry point.
 - [Performance Experiment Lifecycle](skills/performance-experiment-lifecycle/SKILL.md):
   run public-safe optimization experiments through agile screening, formal
   timing, and independent Profile.
+- [Accelerator Process Safety](skills/accelerator-process-safety/SKILL.md):
+  audit device, port, and process ownership before launches or cleanup.
+- [Source Identity Audit](skills/source-identity-audit/SKILL.md): verify code,
+  import, wheel, and vendored source identity before trusting results.
+- [Public Artifact Archive](skills/public-artifact-archive/SKILL.md): publish
+  public-safe experiment and PR evidence without leaking local artifacts.
 - [Open Omni Inference](skills/open-omni-inference/SKILL.md): validate public
   Omni inference changes in an isolated, reproducible environment.
 - [Open PR Maintenance](skills/open-pr-maintenance/SKILL.md): review, revise,

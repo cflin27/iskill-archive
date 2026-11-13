@@ -1,0 +1,4 @@
+interface:
+  display_name: "Source Identity Audit"
+  short_description: "Verify code, import, wheel, and vendored source identity."
+  default_prompt: "Use this skill to verify public code identity, import paths, wheel provenance, and vendored source before comparing or publishing results."

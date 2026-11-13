@@ -1,0 +1,4 @@
+interface:
+  display_name: "Public Artifact Archive"
+  short_description: "Create public-safe experiment and PR evidence archives."
+  default_prompt: "Use this skill to prepare a public-safe archive of experiment, validation, and PR evidence with manifests and reproduction notes."

@@ -13,6 +13,15 @@ workflow knowledge.
   formal timing, and independent profiling. Source basis: distilled local
   experiment workflow; add concrete public source links when archiving a
   specific case.
+- [accelerator-process-safety](accelerator-process-safety/SKILL.md): device,
+  port, and process ownership checks before launch, reuse, or cleanup. Source
+  basis: distilled shared accelerator workflow.
+- [source-identity-audit](source-identity-audit/SKILL.md): verify repository,
+  wheel, import, overlay, and vendored source identity. Source basis: distilled
+  source audit workflow.
+- [public-artifact-archive](public-artifact-archive/SKILL.md): produce
+  public-safe validation and PR evidence archives. Source basis: distilled
+  artifact archival workflow.
 - [open-omni-inference](open-omni-inference/SKILL.md): public Omni inference
   validation using isolated environments and public inputs. Source basis:
   distilled public Omni/vLLM contribution workflow; add concrete public PR links

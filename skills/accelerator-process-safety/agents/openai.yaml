@@ -1,0 +1,4 @@
+interface:
+  display_name: "Accelerator Process Safety"
+  short_description: "Audit device, port, and process ownership before actions."
+  default_prompt: "Use this skill to safely audit accelerator device, port, and process ownership before launching or stopping workloads."
