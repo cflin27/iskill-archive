@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ascend Profile Analysis"
+  short_description: "Analyze Ascend and vLLM profile evidence safely."
+  default_prompt: "Use this skill to plan, collect, validate, and summarize Ascend profiling evidence for an open-source performance investigation."

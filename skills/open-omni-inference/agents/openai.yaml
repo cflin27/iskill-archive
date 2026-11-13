@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open Omni Inference"
+  short_description: "Run public Omni inference validation workflows."
+  default_prompt: "Use this skill to validate an open-source Omni inference change with public inputs, isolated environment checks, and reproducible evidence."

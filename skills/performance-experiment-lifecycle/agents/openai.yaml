@@ -1,0 +1,4 @@
+interface:
+  display_name: "Performance Experiment Lifecycle"
+  short_description: "Run agile screening, formal timing, and independent profiling."
+  default_prompt: "Use this skill to design and execute a public-safe performance experiment from agile screening through formal timing and independent profiling."

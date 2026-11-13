@@ -1,0 +1,4 @@
+interface:
+  display_name: "Open PR Maintenance"
+  short_description: "Review, revise, validate, and reply on open-source PRs."
+  default_prompt: "Use this skill to audit a public PR, address review comments, update evidence, and prepare a concise maintainer reply."
