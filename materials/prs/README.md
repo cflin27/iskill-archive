@@ -10,6 +10,7 @@ materials/prs/<repo-or-pr-id>/
 └── review-response.md
 ```
 
-No concrete PR material is included in this initial draft. Add real entries only
-after confirming that every input, branch, model, metric, and discussion link is
-public.
+`_example-public-pr/` is a skeleton only, not validation evidence.
+
+Add real entries only after confirming that every input, branch, model, metric,
+and discussion link is public.

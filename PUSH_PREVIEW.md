@@ -34,6 +34,8 @@ and public contribution material. The repository is designed around
 - `lessons/`: public-safe lesson index, experiment-methodology lessons, and
   reusable lesson template.
 - `materials/`: public-safe PR/RFC/validation archive policy and templates.
+- `materials/prs/_example-public-pr/`: clearly labeled example skeleton for a
+  future public PR archive; it is not real validation evidence.
 
 ## Explicitly Excluded
 

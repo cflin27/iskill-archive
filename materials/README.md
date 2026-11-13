@@ -9,6 +9,7 @@ Markdown summaries with public links and reproducible public inputs.
 
 - `templates/`: reusable public-safe templates.
 - `prs/`: one subdirectory per public PR, RFC, or topic.
+  `prs/_example-public-pr/` is a skeleton only.
 
 ## New Archive Checklist
 
