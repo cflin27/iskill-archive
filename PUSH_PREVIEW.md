@@ -22,7 +22,13 @@ Ascend encoder leader. It records:
   CC0 1.0 Commons clip `StreamOfFlowingWater.webm`: source SHA-1/SHA-256, excerpt
   window and input hashes, prompt, seed 3101, observed two-call-per-arm CPU
   44.1 -> 32 kHz resampling coverage, and an identical 107-frame/PCM/MP4
-  comparison. It adds no timing number and commits no media binary;
+  comparison. It adds no timing number. The only published presentation file
+  is the synchronized GIF under `assets/` (left Baseline, right PR); the trimmed
+  inputs and the two original output MP4s are not published;
+- `assets/stream-baseline-vs-pr.gif`: 512x292, 107 frames, 4.460 s, infinite
+  loop, silent, 9,861,406 bytes, transcoded from the accepted comparison MP4 by
+  the included `assets/stream-gif.sh`. `assets/README.md` records the identity and
+  transcode parameters; `assets/SHA256SUMS` covers the three asset files;
 - public FFmpeg `testsrc2`/`aevalsrc` and PyTorch input recipes with SHA-256
   values, plus the no-device unit-test result and its pre-existing allocator
   failure;

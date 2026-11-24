@@ -62,19 +62,27 @@ private media.
 - `evidence/stream-demo/`: the natural-scene demonstration pair — public CC0
   source record, excerpt window and input hashes, prompt, metrics, and the
   `stream-inputs.sh` / `stream-comparison.sh` reproduction scripts.
+- `assets/`: the one published presentation file, the synchronized
+  natural-scene demo GIF (`SHA256SUMS` included).
 
 ## Media
 
-No video or audio files are committed here. The accuracy evidence for the
-synthetic benchmark pair — the per-frame comparison record plus the decoded
-PCM/MP4 hashes — is in `evidence/`, next to the scripts that rebuild the public
-inputs and recompute the comparison. The natural-scene demonstration pair is
-recorded the same way in `evidence/stream-demo/`, together with its public
-source, excerpt window and input hashes. Accuracy numbers are always computed
-from the original decoded media, never from a presentation file, so this archive
-keeps the evidence and not the presentation media; the comparison videos and the
-paired outputs are delivered with the PR description rather than committed here,
-and raw experiment logs are not committed here either.
+One presentation file is published with the PR description:
+[`assets/stream-baseline-vs-pr.gif`](assets/stream-baseline-vs-pr.gif) — the
+natural-scene demonstration pair, left **Baseline** and right **PR** on the same
+frame timeline: 512x292, 107 frames, 4.460 s, infinite loop, silent, 9,861,406
+bytes. It is a transcode of the two original outputs and is never used for an
+accuracy number.
+
+Nothing else is published. The synthetic benchmark pair has no presentation
+media: its per-frame comparison record and decoded PCM/MP4 hashes are in
+`evidence/`, next to the scripts that rebuild the public inputs and recompute
+the comparison. The demonstration pair's trimmed inputs (`reference.mp4`,
+`reference.wav`) and its two original output MP4s are not delivered with the PR
+description either; `evidence/stream-demo/` records their hashes and the recipes
+that rebuild and compare them. Accuracy numbers are always computed from the
+original decoded media, never from a presentation file, and raw experiment logs
+are not committed here.
 
 ## Security review
 

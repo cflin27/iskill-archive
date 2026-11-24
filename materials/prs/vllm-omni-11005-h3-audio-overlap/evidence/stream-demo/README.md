@@ -7,11 +7,14 @@ no performance number; every timing table in
 [../../validation-and-benefit.md](../../validation-and-benefit.md) remains the
 FFmpeg-synthetic benchmark.
 
-No media binary is committed here. The trimmed inputs, the two original outputs
-and the synchronized presentation MP4 are delivered with the PR description
-rather than committed; this directory keeps the public source, the exact excerpt
-recipe, the request identity, the measured comparison and the recorded hashes.
-`demo-media-source.md` is the delivered evidence note; this README indexes it.
+This directory contains no media binary: it keeps the public source, the exact
+excerpt recipe, the request identity, the measured comparison and the recorded
+hashes. The only presentation file published with the PR description is the
+synchronized GIF in [`assets/`](../../assets/), transcoded from the two original
+outputs. The trimmed inputs (`reference.mp4`, `reference.wav`) and the two
+original output MP4s are not published there; their hashes are below, and the
+scripts in this directory rebuild and compare them. `demo-media-source.md` is
+the delivered evidence note; this README indexes it.
 
 ## Source and excerpt
 
@@ -94,9 +97,20 @@ Both decoded PCM s16le hashes:
 768x768 under a 48-pixel label strip, with the identical audio shared as one AAC
 track. SHA-256
 `92221fca6c878bb121f28bc228d59cf793e53413d1ee0992e2a0eb0a6cab6d61`;
-libx264 medium, CRF 18, High@4.1, yuv420p, maxrate/bufsize 12M, faststart. It is
-a presentation encode and is not committed here; every accuracy value above
-comes from the unmodified original files.
+libx264 medium, CRF 18, High@4.1, yuv420p, maxrate/bufsize 12M, faststart. The
+MP4 itself is not published with the PR description.
+
+The published presentation file is the silent GIF
+[`assets/stream-baseline-vs-pr.gif`](../../assets/stream-baseline-vs-pr.gif),
+transcoded from that MP4 by
+[`assets/stream-gif.sh`](../../assets/stream-gif.sh): 9,861,406 bytes, 512x292,
+107 frames, 4.460 s, infinite loop, left **Baseline** / right **PR**, SHA-256
+`78bba61543bc75cbb46a619f70b4ef9cede4d3e9aedc8700a99d4fe029792dbe`.
+GIF frame delays have 10 ms granularity; the recorded maximum timestamp rounding
+difference from the MP4 is 5 ms, and both views always show the same paired
+frame. [`assets/README.md`](../../assets/README.md) records the full identity and
+transcode parameters. Every accuracy value above comes from the unmodified
+original files, never from the MP4 or the GIF.
 
 ## Reproduction
 

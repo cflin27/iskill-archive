@@ -97,6 +97,11 @@ The pair is a correctness demonstration, not a timing sample: the demo request
 was not measured and adds no latency number to this file. Byte-level PCM and RGB
 hashes depend on the FFmpeg build; the invariant asserted here is that both arms
 are identical. The recorded hashes use the validation environment's FFmpeg 4.4.2.
+The one published presentation file is the silent synchronized GIF
+[`assets/stream-baseline-vs-pr.gif`](assets/stream-baseline-vs-pr.gif) (left
+**Baseline**, right **PR**, 107 frames); it is playback only, and no number in
+this file is taken from it. The paired outputs and the trimmed inputs are not
+published with the PR description.
 
 ## Performance
 
@@ -201,21 +206,15 @@ Then compare the two saved outputs from the same archive directory:
 bash evidence/ref2va-compare.sh   # reads baseline.mp4 and candidate.mp4
 ```
 
-Step 4 covers the natural-scene demonstration pair (accuracy only, not timed).
-It lives in its own directory with its own inputs and prompt, so it cannot
-overwrite the synthetic `reference.mp4`/`reference.wav`:
-
-```bash
-# 4) Natural-scene demonstration pair: same two services, demo inputs.
-cd evidence/stream-demo
-curl -fL -o StreamOfFlowingWater.webm \
-  'https://upload.wikimedia.org/wikipedia/commons/e/e0/StreamOfFlowingWater.webm'
-sha256sum StreamOfFlowingWater.webm   # 26e471fd...4e96f
-bash stream-inputs.sh StreamOfFlowingWater.webm .
-# Send stream-prompt.txt and reference.mp4/reference.wav to each exported base
-# URL as in step 3, saving baseline.mp4 and candidate.mp4 in this directory.
-bash stream-comparison.sh baseline.mp4 candidate.mp4 stream-baseline-vs-pr.mp4
-```
+Step 4 is the natural-scene demonstration pair (accuracy only, not timed). It
+lives in its own directory with its own inputs and prompt, so it cannot
+overwrite the synthetic `reference.mp4`/`reference.wav`.
+[`evidence/stream-demo/`](evidence/stream-demo/) holds the CC0 source record,
+excerpt window, input hashes, prompt, request, comparison and the recorded
+per-frame/PCM results, and its
+[Reproduction](evidence/stream-demo/README.md#reproduction) section carries the
+complete two-arm commands from the public source download to
+`stream-comparison.sh`.
 
 The Ascend environment follows the public MindIE-SD H3 recipe
 ([infer.md](https://github.com/Ascend/MindIE-SD/blob/dev/examples/minimax-h3/infer.md)).
