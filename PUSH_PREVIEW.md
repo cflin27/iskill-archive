@@ -1,10 +1,36 @@
 # Push Preview: iskill-archive Content
 
-Status: initial archive, Omni PR materials and validation-evidence lessons are
-pushed. Current pending update adds the vLLM-Omni PR #11005 audio-overlap
-archive.
+Status: initial archive, Omni PR materials, validation-evidence lessons, and the
+vLLM-Omni PR #11005 audio-overlap archive are pushed. Current pending update adds
+experiment and exit-audit lessons.
 
-## Current Update: vLLM-Omni PR #11005 audio-overlap archive
+## Current Update: Experiment and Exit-Audit Lessons
+
+Adds one lesson and one skill reference, and extends three documents. Derived
+from a public PR's validation report; no case-specific paths, hosts, logs,
+commits, or unpublished source are included.
+
+- `lessons/shutdown-and-exit-audit.md` (new): the five exit evidence layers
+  (request result, supervisor return, per-process code, shutdown trace, resource
+  release), signal exits such as `-9`, grace-period timeout plus force-kill,
+  control comparison, claim scope per configuration, and reporting the shutdown
+  gap beside the passing numbers.
+- `lessons/experiment-methodology.md`: adds cold-request versus steady-state
+  discipline (separate startup blocks, both execution orders, no causal claim
+  from order-confounded samples) and component-level A/B rules (both orders
+  reported separately, actual component load counts, parity and exit records).
+- `lessons/validation-evidence-discipline.md`: adds stage scope of a claim
+  (collectives, component parity, full request are separate stages), request
+  contracts and expected-rejection cases, whole-repository hook checks with a
+  complete git tree, and CPU communication tests versus accelerator-backed tests.
+- `lessons/README.md`: index updated.
+- `skills/accelerator-process-safety/SKILL.md` and
+  `references/shutdown-audit.md`: shutdown audit after stopping any multi-process
+  service, with a per-process exit and resource-release checklist.
+- `skills/open-omni-inference/references/public-validation-ladder.md`: adds a
+  final rung for exit and resource release.
+
+## Previous Update: vLLM-Omni PR #11005 audio-overlap archive
 
 Adds `materials/prs/vllm-omni-11005-h3-audio-overlap/`, a public-safe archive
 for [vllm-project/vllm-omni#11005](https://github.com/vllm-project/vllm-omni/pull/11005),
@@ -43,7 +69,7 @@ Ascend encoder leader. It records:
 It also adds the new entry to `materials/README.md` and `materials/prs/README.md`.
 No private media, raw logs, hostnames, paths or credentials are included.
 
-## Current Update: Validation Evidence Lessons
+## Previous Update: Validation Evidence Lessons
 
 Adds one lesson file and extends the skills it maps to. No case-specific paths,
 hosts, logs, commits, or unpublished source are included.

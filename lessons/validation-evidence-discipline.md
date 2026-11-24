@@ -90,6 +90,59 @@ initialization or modify the tree when the source is read-only; with a shared
 tree they can also leave state that the next arm inherits. Keeping source
 read-only makes the tree clean at the end and makes "which code ran" auditable.
 
+## Stage Scope of a Claim
+
+Accelerator collectives, component-level parity, and full request generation are
+different validation stages. A passing collective probe or a matching
+conditioning array proves that stage only.
+
+- Report each stage's completion separately, including which device group and
+  which backend was exercised.
+- Component timing is not full-request latency, and component output parity is
+  not media or response equivalence. Both can pass while the full pipeline still
+  needs its own correctness and timing evidence.
+- A passing all-reduce does not prove the collective the model actually uses, and
+  a passing collective does not prove the service starts, serves, and shuts
+  down.
+
+## Request Contracts Before Calling a Failure
+
+Read the public input contract before running, then classify each case.
+
+- Some pipelines require at least one image or video reference and must reject an
+  audio-only or no-reference request with a documented error. A negative case
+  that returns the documented rejection is a pass, not a regression.
+- An extracted audio track paired with a reference frame is not the same request
+  shape as an audio-only request. Label derived inputs by how they were produced
+  and keep them separate from the original public input.
+- After a rejection, prove recovery by sending a valid request to the same
+  service. A rejection that leaves the service unusable is a real failure.
+- Measure latency and throughput only on the positive cases that are expected to
+  generate output.
+
+## Full-Repository Checks
+
+- Whole-repo formatter and lint hooks need the complete git tree. A sparse
+  checkout can miss first-party packages, producing errors the full tree does
+  not have; check out fully, or label the check as partial.
+- Confirm the hook version pinned in the repository configuration matches the
+  binary that ran, and report whether any hook auto-fixed files so the final tree
+  is clean or the diff is known.
+- On an unstable network, install the pinned versions from public registries with
+  hash verification inside the disposable container. Do not replace a required
+  whole-repo check with a sampled file list.
+
+## CPU Communication Tests Versus Accelerator-Backed Tests
+
+- A CPU collective test and an accelerator-backed test need different resources.
+  Record the actual device mapping and the communication backend for each run.
+- An accelerator initialization or pinning error in a CPU-only regression is an
+  environment setup failure, not a candidate regression; confirm it on the
+  control before spending a run on it.
+- Check the interpreter that spawned workers actually use. A non-path alias can
+  leave the child launch with an empty executable and fail the test for a reason
+  unrelated to the candidate.
+
 ## Public Sources
 
 - Public PR and validation links are added per case in

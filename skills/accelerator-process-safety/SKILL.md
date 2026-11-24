@@ -55,7 +55,29 @@ can mislead cleanup logic.
   to the current run and no writer remains.
 - After cleanup, verify that ports, devices, and child processes were released.
 
+## Shutdown Audit
+
+A successful request and an exit-0 launcher do not prove that the workers shut
+down cleanly. After stopping any multi-process service:
+
+- Record the exit code of the launcher, each stage manager, and each rank.
+- Read a negative code as a signal termination, and a grace-period timeout plus
+  force-kill log as the same ungraceful condition seen in another layer.
+- Keep `atexit` or equivalent end-of-run markers for ranks whose numeric code was
+  not captured, and state that the numeric code is missing instead of implying a
+  clean exit.
+- Report the configuration the clean exit covers. A single-stage smoke does not
+  certify a staged service.
+- If the control shows the same shutdown behavior, report it as shared and still
+  leave the unresolved shutdown gap in the acceptance result.
+- Verify resource release after the stop: no listener on the task ports, no
+  remaining task child processes, and the devices at their idle baseline.
+
+Use [shutdown-audit.md](references/shutdown-audit.md) after stopping a service.
+
 ## References
 
 - Use [ownership-checklist.md](references/ownership-checklist.md) before any
   cleanup or reuse decision.
+- Use [shutdown-audit.md](references/shutdown-audit.md) to collect exit and
+  resource-release evidence after a stop.

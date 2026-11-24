@@ -10,6 +10,31 @@ device probes, and failure triage, see
 - Do not reuse the same content for warmup and formal measurement unless the
   benchmark explicitly targets cache hits.
 
+## Cold Requests Versus Steady State
+
+- Record the first request after each process start separately from the measured
+  repeats. Keep its value, and the arm order of the startup it came from.
+- A single cold request per arm cannot establish a regression, and it cannot be
+  explained away either. When both blocks start the candidate first, startup
+  order, page cache, and first-time offload or reload remain confounded.
+- Decide causality with independent startups, repeated cold samples, and both
+  execution orders. Until that exists, report the cold difference as an open
+  limitation, not as a source-level regression.
+- Do not let the steady-state mean absorb a slow cold request, and do not quote a
+  steady-state improvement as a cold-start improvement. They answer different
+  questions.
+
+## Component-Level A/B
+
+- Run the component comparison in both execution orders and report the blocks
+  separately instead of pooling them.
+- Record the actual work the component performs per arm (for example how many
+  times each sub-model stager loads) and the peak allocator usage. The counts
+  show the mechanism; they do not turn component timing into full-request
+  latency.
+- Keep per-round samples, warmup, output parity, and an independent process exit
+  record for the component run. Component parity is evidence for that stage only.
+
 ## Async Overlap
 
 - Prove the target interval overlaps before claiming an async speedup.

@@ -64,3 +64,14 @@ device group intended for the run. Stop at the first failed rung.
 - The report states limitations and non-promoted findings plainly. A failure
   that does not reproduce under the chosen configuration is "not observed", not
   "fixed".
+
+## Rung 8: Exit and Resource Release
+
+- Launcher, each stage manager, and each rank have recorded exit codes.
+- A negative code or a grace-period force-kill log is reported as an ungraceful
+  shutdown, not smoothed over by a successful API or launcher exit.
+- The control's shutdown trace is compared before the failure is assigned to the
+  candidate.
+- Task ports, child processes, and devices are back at their idle baseline.
+- The acceptance result scopes the clean exits to the configuration actually
+  observed; a single-stage smoke does not certify a staged service.
