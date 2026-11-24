@@ -21,6 +21,32 @@ latency. Validate overlap before promoting the change.
 - Check synchronization points. A misplaced wait can serialize the path or wait
   on the wrong stream/event.
 
+## Call Interval vs Kernel Time
+
+A host-side call interval measures when a function was entered and exited. It
+includes waiting, interpreter overhead, and time spent overlapped with other
+work. It is not CPU kernel time.
+
+A candidate can widen a host call interval while shortening the critical path,
+because the added work overlaps an accelerator call. The reverse is also
+possible: two calls can appear to "overlap" while the request gets slower.
+Therefore:
+
+- Measure overlap as the intersection of producer and consumer intervals within
+  one request, not as the sum of both durations.
+- Confirm the overlapped work lies on the request's critical path before claiming
+  a saving.
+- Report the call interval as a diagnostic; report kernel time separately; make
+  the promotion decision from full request wall time.
+
+## Measurement Setup
+
+- Fix host thread count and affinity across arms for CPU-side stages.
+- Warm up each version independently before its measured repeats.
+- Keep tail samples; report the range and count next to the mean.
+- Trace a small separate sample set for mechanism evidence and keep it out of
+  formal timing.
+
 ## Report Phrase
 
 Use language like:

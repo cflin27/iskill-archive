@@ -24,12 +24,33 @@
 
 ## Formal Timing
 
-Profiler disabled. Warmup excluded.
+Profiler disabled. Warmup excluded. Host parallelism fixed across arms.
 
-| Arm | Warmup | Measured requests | Raw samples | Mean | Notes |
-| --- | --- | ---: | --- | ---: | --- |
+| Arm | Warmup | Measured requests | Raw samples | Mean | Range | Notes |
+| --- | --- | ---: | --- | ---: | --- | --- |
+| Baseline | | | | | | |
+| Candidate | | | | | | |
+
+Per-round gate check:
+
+| Round | Metric | Baseline | Candidate | Delta | Gate |
+| --- | --- | ---: | ---: | ---: | --- |
+| | | | | | |
+
+Pooled-sample statistics (report separately from per-round results):
+
+| Arm | Samples | p50 | p90 | Mean | Range |
+| --- | ---: | ---: | ---: | ---: | --- |
 | Baseline | | | | | |
 | Candidate | | | | | |
+
+## Measurement Layers
+
+| Layer | Metric | Baseline | Candidate | Notes |
+| --- | --- | ---: | ---: | --- |
+| Sub-stage | | | | |
+| Host call interval | | | | Diagnostic; not kernel time |
+| Full request | | | | Promotion decision |
 
 ## Correctness
 

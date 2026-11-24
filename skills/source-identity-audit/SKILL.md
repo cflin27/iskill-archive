@@ -27,6 +27,9 @@ Record identity at each layer that can affect behavior:
 - Editable install or overlay path.
 - Runtime import path and module `__file__`.
 - Service binary or entry point.
+- Model hierarchy the task loader actually constructs, not only the model alias
+  or run label.
+- Checkpoint or weight revision/hash, and expected versus present shard count.
 - Container image, package lock, or dependency versions when relevant.
 
 Do not use a version label by itself as proof that the expected code ran.
@@ -40,8 +43,15 @@ Do not use a version label by itself as proof that the expected code ran.
    to a public blob.
 4. Verify package imports at runtime from inside the same environment that will
    execute the workload.
-5. Check that editable installs and overlays resolve to the intended checkout.
-6. Record evidence before running the experiment or PR validation.
+5. Resolve the model class the loader actually builds. A task entry can name one
+   variant while the loader resolves a different hierarchy (base versus
+   distilled, dense versus sparse, language versus omni wrapper). Record the
+   resolved class, module path, and launch arguments.
+6. Confirm checkpoint identity: revision or hash, and that the expected number of
+   shards is present and non-empty. A directory that exists is not a checkpoint
+   that matches.
+7. Check that editable installs and overlays resolve to the intended checkout.
+8. Record evidence before running the experiment or PR validation.
 
 ## Red Flags
 
@@ -49,7 +59,12 @@ Do not use a version label by itself as proof that the expected code ran.
 - `pip show` or package metadata points to a different checkout than expected.
 - A generated `_version.py` or equivalent file is missing and import fallback
   loads another installation.
-- Baseline and candidate use different wheels, overlays, or dependency lanes.
+- The model name matches, but the loader resolves a different model hierarchy or
+  a different wrapper class.
+- The checkpoint directory exists, but the expected shard count is short or a
+  shard is empty.
+- Baseline and candidate use different wheels, overlays, dependency lanes, or
+  checkpoint revisions.
 - A public PR branch carries unrelated local changes.
 
 ## References

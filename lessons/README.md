@@ -13,7 +13,12 @@ datasets.
 ## Index
 
 - [experiment-methodology.md](experiment-methodology.md): cache, async overlap,
-  allocator state, and precision/determinism lessons.
+  allocator state, precision/determinism, measurement layers, timing hygiene,
+  and per-round promotion gates.
+- [validation-evidence-discipline.md](validation-evidence-discipline.md):
+  execution and checkpoint identity, device probe ladder, runtime parameter
+  ranges, non-reproduction versus a fix, candidate failure triage, and
+  read-only source with a writable work directory.
 - [templates/lesson.md](templates/lesson.md): lesson entry template.
 
 ## Promotion Rule

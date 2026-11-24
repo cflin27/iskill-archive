@@ -15,6 +15,15 @@
 - Package version:
 - Hash:
 
+## Model
+
+- Loader entry point and arguments:
+- Resolved model class or hierarchy:
+- Model alias versus resolved class:
+- Checkpoint revision or hash:
+- Expected shard count:
+- Present shard count and non-empty check:
+
 ## Runtime
 
 - Executable:

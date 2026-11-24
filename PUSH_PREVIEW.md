@@ -1,7 +1,36 @@
 # Push Preview: iskill-archive Content
 
-Status: initial archive pushed; current update adds public-safe Omni PR
-materials.
+Status: initial archive and Omni PR materials are pushed. Current pending
+update adds validation-evidence lessons and tightens three existing skills.
+
+## Current Update: Validation Evidence Lessons
+
+Adds one lesson file and extends the skills it maps to. No case-specific paths,
+hosts, logs, commits, or unpublished source are included.
+
+- `lessons/validation-evidence-discipline.md` (new): execution identity
+  including model hierarchy and checkpoint shards, the device probe ladder
+  (enumeration, tensor plus synchronize, collective, target collective,
+  decodable request), runtime parameter ranges, non-reproduction is not a fix,
+  candidate failure triage, and read-only source with a separate writable
+  work directory.
+- `lessons/experiment-methodology.md`: adds measurement layers (sub-stage,
+  host call interval, full request), timing hygiene (independent warmup, fixed
+  host parallelism, kept tail samples, small-sample percentiles), and per-round
+  promotion gates versus pooled statistics.
+- `lessons/README.md`: index updated.
+- `skills/performance-experiment-lifecycle/SKILL.md` and references:
+  `references/async-overlap-validation.md` now separates host call interval from
+  kernel time and requires overlap inside the critical path;
+  `references/experiment-report-template.md` gains a per-round gate table and a
+  measurement-layer table.
+- `skills/source-identity-audit/SKILL.md` and
+  `references/identity-record.md`: record the model class the loader resolves
+  and checkpoint revision/shard count, with matching red flags.
+- `skills/open-omni-inference/SKILL.md` and
+  `references/public-validation-ladder.md`: read-only source plus writable work
+  directory, device probes before service startup, runtime-accepted parameter
+  ranges, non-reproduction wording, and candidate failure reporting.
 
 ## Purpose
 
@@ -71,5 +100,5 @@ https://github.com/cflin27/iskill-archive
 Latest suggested commit message:
 
 ```text
-Add vLLM-Omni H3 Ascend PR materials
+Add validation evidence lessons and tighten skill gates
 ```

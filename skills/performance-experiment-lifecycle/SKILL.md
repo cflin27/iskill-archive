@@ -56,9 +56,15 @@ Promote only one selected candidate to formal timing.
 
 - Disable profilers and heavy tracing.
 - Use a fixed warmup sequence and exclude warmup from the mean.
+- Warm up each version independently before its measured repeats.
 - Run repeated measured requests using the same sequence for baseline and
   candidate.
-- Report raw samples, arithmetic mean, units, and sample count.
+- Fix host-side parallelism, thread count, and affinity across arms when the
+  measured stage has CPU-side work.
+- Report raw samples, arithmetic mean, sample range, units, and sample count.
+  Keep tail samples; do not trim slow requests.
+- Apply the regression gate per round and per metric, not only to the mean across
+  rounds. Report pooled-sample statistics separately from per-round statistics.
 - For distributed stages, state the aggregation rule before averaging, such as
   per-request maximum across ranks.
 - Keep correctness or deterministic checks separate from performance mode when
@@ -92,6 +98,12 @@ The report must distinguish:
 - profile explanation,
 - correctness evidence,
 - limitations and not-run items.
+
+Keep three measurement layers apart in the report: the sub-stage, the host call
+interval, and the full request. Only the full request supports a user-facing
+speedup claim; a wider host call interval is diagnostic, not a kernel
+regression. State which metrics fed the promotion gate and which were
+diagnostic, and report per-round results next to any pooled aggregate.
 
 ## Method References
 
