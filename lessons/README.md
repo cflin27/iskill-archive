@@ -13,7 +13,9 @@ datasets.
 ## Index
 
 - [experiment-methodology.md](experiment-methodology.md): cache, cold requests
-  versus steady state, component-level A/B, async overlap, allocator state,
+  versus steady state, order-confounded cells and independent order-swapped
+  blocks (arm order as one possible factor, non-reproduction kept
+  causal-undetermined), component-level A/B, async overlap, allocator state,
   precision/determinism, measurement layers, timing hygiene, and per-round
   promotion gates.
 - [validation-evidence-discipline.md](validation-evidence-discipline.md):
@@ -22,8 +24,15 @@ datasets.
   source with a writable work directory, stage scope of a claim, request
   contracts, whole-repository checks, and CPU versus accelerator test resources.
 - [shutdown-and-exit-audit.md](shutdown-and-exit-audit.md): exit evidence layers,
-  signal exits, grace-period force-kill, control comparison, and how to report a
-  shutdown gap next to passing request results.
+  per-rank OS exit capture from the parent's wait record, worker self-reports
+  kept separate, `not retained` rows, signal exits, grace-period force-kill with
+  its warning count checked independently of missing codes, control comparison,
+  and how to report a shutdown gap next to passing request results.
+- [device-gating-evidence.md](device-gating-evidence.md): evidence for a
+  capability-gated fast path per device, why zero fast-path activity proves
+  routing only and a fallback needs baseline parity plus side-effect checks, no
+  bridging across device families, stubbed-backend tests versus real decisions,
+  and the fixed verdict vocabulary.
 - [templates/lesson.md](templates/lesson.md): lesson entry template.
 
 ## Promotion Rule

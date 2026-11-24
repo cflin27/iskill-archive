@@ -1,14 +1,53 @@
 # Push Preview: iskill-archive Content
 
-Status: initial archive, Omni PR materials, validation-evidence lessons, and the
-vLLM-Omni PR #11005 audio-overlap archive are pushed. Current pending update adds
-experiment and exit-audit lessons.
+This update builds on the experiment and exit-audit lessons. It adds guidance
+on device gating, run order, and per-process exit records.
 
-## Current Update: Experiment and Exit-Audit Lessons
+## Current Update: Device-Gating, Order-Block and Exit-Authority Rules
 
-Adds one lesson and one skill reference, and extends five documents. Derived
-from a public PR's validation report; no case-specific paths, hosts, logs,
-commits, or unpublished source are included.
+Adds one lesson and updates eight documents, nine files in total. Distilled from
+internal validation review of a capability-gated optimization; that evidence is
+not public yet, so no per-case source link is cited here and the rules stay
+general. A public case link is added in `materials/prs/<topic>/` only after the
+evidence is accepted for publication. No case-specific paths, hosts, logs,
+commits, device assignments, or unpublished source are included.
+
+- `lessons/device-gating-evidence.md` (new): the two claims of a
+  capability-gated fast path, per-device evidence (raw query string, gate
+  decision, install count, per-scope call counts, parity, side effects), the
+  rule that zero fast-path activity proves routing only and that fallback
+  acceptance needs baseline parity plus an install side-effect check, no
+  bridging across device families, stubbed-backend tests versus real decisions,
+  and the fixed verdict vocabulary including `fallback selected`.
+- `lessons/experiment-methodology.md`: adds order-confounded cells and
+  independent order-swapped blocks (own warmup and gate, never pooled, arm order
+  listed as one possible factor, original regression retained, non-reproduction
+  kept causal-undetermined, block-selection guard, pre-registered decision rule)
+  and the rule that a later block never deletes an earlier regression.
+- `lessons/shutdown-and-exit-audit.md`: adds exit codes taken from the parent or
+  supervisor wait record, worker self-reports kept in a separate column, `not
+  retained` rows, scoped acceptance wording, a warning count checked separately
+  from the missing codes, and shared-warning handling judged against the
+  pre-fixed exit requirement.
+- `lessons/README.md`: index updated.
+- `skills/accelerator-process-safety/references/shutdown-audit.md`: parent wait
+  records versus worker self-reports, `not retained` rows, and the separate
+  warning-count check in the per-process and reporting checklists.
+- `skills/open-omni-inference/SKILL.md` and
+  `references/public-validation-ladder.md`: capability-gated paths recorded per
+  device arm at the agile A/B rung with fallback acceptance split from routing,
+  device-family scoping of every number at the formal evidence rung, and
+  parent-recorded exit rows at the exit rung.
+- `skills/performance-experiment-lifecycle/references/experiment-report-template.md`:
+  a capability-gating table with a side-effect column, an order-block table with
+  the causal-undetermined verdict wording, and a process-exit table that records
+  the source of each exit code and keeps worker self-reports separate.
+
+## Previous Update: Experiment and Exit-Audit Lessons
+
+Adds one lesson and one skill reference, and updates six documents, eight files
+in total. Derived from a public PR thread and internal validation; no
+case-specific paths, hosts, logs, commits, or unpublished source are included.
 
 - `lessons/shutdown-and-exit-audit.md` (new): the five exit evidence layers
   (request result, supervisor return, per-process code, shutdown trace, resource
@@ -166,5 +205,5 @@ https://github.com/cflin27/iskill-archive
 Latest suggested commit message:
 
 ```text
-Add vLLM-Omni PR #11005 audio-overlap archive
+Document gating, order-block and exit-authority evidence
 ```

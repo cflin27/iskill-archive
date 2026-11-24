@@ -24,6 +24,35 @@ device probes, and failure triage, see
   steady-state improvement as a cold-start improvement. They answer different
   questions.
 
+## Order-Confounded Cells and Independent Blocks
+
+- A fixed arm order inside a matrix (candidate always second) leaves every cell
+  ambiguous: warmup state, page cache, allocator growth, background load, and
+  thermal drift all follow order. Name arm order as one possible contributing
+  factor, not as the cause; a single regressed cell is order-confounded, not yet
+  a proven regression.
+- When one cell regresses, rerun that cell alone in a separate block with the
+  arm order reversed. Give the block its own warmup, samples, and gate
+  decision; do not merge, pool, or average it with the original matrix.
+- Report the original regression row unchanged even when the new block is
+  inside the gate. Say the effect did not reproduce under the reversed order and
+  that causality remains undetermined. A non-reproduction does not show that
+  order caused the original cell, and it does not show the candidate is free of
+  a regression; do not upgrade it to "no regression".
+- Reversal changes arm order together with every other factor that follows arm
+  position, so one reversed block cannot separate order from those factors.
+  Unless the other factors are controlled independently, keep order as a
+  possible factor and keep the causal question open.
+- Fix the decision rule before running: which block decides promotion, which
+  threshold applies, and how many blocks are allowed. Rerunning a cell until one
+  block passes is block selection, not evidence. Report every block that ran.
+- Keep input, seed, parameters, and warmup count identical between the blocks;
+  only arm order should differ. If anything else changed it is a new
+  experiment, not an order control.
+- Apply the same per-round gate to the order-swapped block. Passing it shows the
+  original cell did not reproduce under that order; it does not show the
+  candidate is faster, and it does not resolve what produced the original cell.
+
 ## Component-Level A/B
 
 - Run the component comparison in both execution orders and report the blocks
@@ -84,3 +113,6 @@ device probes, and failure triage, see
   can hide a single-round regression.
 - State before the run which metrics feed the gate and which are diagnostic, so
   a favorable metric cannot be chosen after the fact.
+- A regression recorded in one block is never deleted by a later block. Report
+  every block, mark whether the effect reproduced, and keep the promotion
+  decision in one place that names the evidence it used.

@@ -64,6 +64,13 @@ or discussion links in `materials/prs/<topic>/README.md`.
   the control in the same environment and record whether it passed, failed in
   the same way, failed differently, or was not completed. Assess whether a
   shared failure blocks the comparison based on the required outputs and samples.
+- Treat a capability-gated fast path as two claims: the fast path is entered on
+  the intended device, and every other device keeps the original path with
+  identical output. Zero installs and zero calls only show that the gate did not
+  select the fast path. Call the fallback verified only when the outputs also
+  match the baseline and a side-effect check shows no marker, no bound
+  `forward`, and no replaced weights; otherwise report it as fallback selected
+  and the fast-path hit as not covered.
 
 ## References
 

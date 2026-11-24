@@ -51,6 +51,12 @@ device group intended for the run. Stop at the first failed rung.
 - Base and candidate share the same public environment.
 - Only the tested switch or diff changes.
 - Timing and behavior move in the expected direction on a small public case.
+- For a capability-gated path, record per arm the raw device query string, the
+  gate decision, the install count, and the fast-path call count per scope. Zero
+  installs and zero calls show only that the gate selected the fallback; accept
+  the fallback only with baseline output parity and a clean install side-effect
+  check. Until both exist the cell stays `fallback selected`, and the fast-path
+  hit stays `not covered`.
 
 ## Rung 7: Formal Evidence
 
@@ -64,12 +70,22 @@ device group intended for the run. Stop at the first failed rung.
 - The report states limitations and non-promoted findings plainly. A failure
   that does not reproduce under the chosen configuration is "not observed", not
   "fixed".
+- Every timing and correctness number is reported with the device family it came
+  from. Do not carry a fast-path hit or a fallback verdict across device
+  families or runtime versions.
 
 ## Rung 8: Exit and Resource Release
 
-- Launcher, each stage manager, and each rank have recorded exit codes.
+- Launcher, each stage manager, and each rank have recorded OS exit codes taken
+  from the parent or supervisor wait record; a worker's self-reported status is
+  kept separately and is not an exit code.
+- A rank whose code was never captured is marked `not retained`, and the
+  grace-period warning is quoted with its count and reconciled against those
+  rows as a separate check; a matching count does not replace the missing code.
 - A negative code or a grace-period force-kill log is reported as an ungraceful
   shutdown, not smoothed over by a successful API or launcher exit.
+- A shared shutdown warning is judged against the exit requirement fixed before
+  the run; it does not waive that requirement for either arm.
 - The control's shutdown trace is compared before the failure is assigned to the
   candidate.
 - Task ports, child processes, and devices are back at their idle baseline.

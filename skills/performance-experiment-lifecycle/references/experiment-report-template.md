@@ -14,6 +14,7 @@
 - Public model/workload:
 - Public input sequence:
 - Device and runtime:
+- Device capability gates and the expected fallback behavior:
 - Fixed switches and parameters:
 
 ## Agile Screening
@@ -37,6 +38,20 @@ Per-round gate check:
 | --- | --- | ---: | ---: | ---: | --- |
 | | | | | | |
 
+## Order Blocks
+
+Cells that regressed in the main matrix and were rerun alone with the arm order
+reversed. Report each block on its own; never pool it with the matrix.
+
+| Cell | Block | Arm order | Warmup | Samples | Mean | Range | Gate | Verdict |
+| --- | --- | --- | --- | ---: | ---: | --- | --- | --- |
+
+Verdict wording: `did not reproduce`, `reproduced`, `inconclusive`. List arm
+order as one possible factor, not as the cause. Keep the original regression row
+and state that causality remains undetermined even when the effect does not
+reproduce: the reversed block changes arm order together with the other factors
+that follow arm position, and `did not reproduce` does not mean `no regression`.
+
 Pooled-sample statistics (report separately from per-round results):
 
 | Arm | Samples | p50 | p90 | Mean | Range |
@@ -52,6 +67,16 @@ Pooled-sample statistics (report separately from per-round results):
 | Host call interval | | | | Diagnostic; not kernel time |
 | Full request | | | | Promotion decision |
 
+## Capability Gating
+
+Fill this in only for a change whose optimized path depends on a device
+capability check. Zero installs and zero calls show only that the gate selected
+the fallback (`fallback selected`). The row becomes `fallback verified` only
+with parity against the baseline and a clean install side-effect check.
+
+| Device (raw query) | Gate | Installs | Fast-path calls by scope | Parity vs baseline | Install side effects | Verdict |
+| --- | --- | ---: | --- | --- | --- | --- |
+
 ## Correctness
 
 | Check | Baseline | Candidate | Result |
@@ -64,8 +89,23 @@ Pooled-sample statistics (report separately from per-round results):
 | --- | --- | --- | --- |
 | | | | |
 
+## Process Exit
+
+| Layer | Process | Exit code | Recorded from | Evidence |
+| --- | --- | --- | --- | --- |
+| Launcher | | | supervisor wait record | |
+| Stage manager | | | parent or supervisor wait record | |
+| Rank | | | parent wait record | Mark `not retained` when no OS record exists |
+| Worker self-report (separate) | | | worker status file or log | Not an exit code |
+
+The exit code authority is the parent's or supervisor's OS wait record. Quote the
+shutdown warning with its count next to this table, and reconcile the count
+against the `not retained` rows as a separate check; a matching count does not
+recover a missing code.
+
 ## Limits
 
-- Not run:
+- Not run: include any target device family for a gated fast path that was not
+  reached, and state which fallback status the other rows support.
 - Known caveats:
 - Evidence that should not be generalized:

@@ -20,12 +20,20 @@ This layer says the serving path worked. It says nothing about teardown.
 
 ## Layer 3: Per-Process Exit
 
-- [ ] Each stage manager's exit code recorded.
-- [ ] Each rank or worker's exit code recorded.
+- [ ] Each stage manager's exit code recorded from the parent or supervisor that
+      reaped it.
+- [ ] Each rank or worker's exit code recorded from its parent's OS wait status.
+- [ ] Worker self-reported status (status file, log line, "exited cleanly"
+      message) kept on a separate line and not used as the exit code.
 - [ ] Where a worker exited by signal (negative code), the signal and the
       preceding log lines are recorded.
-- [ ] Where no reliable numeric code exists for a child, that gap is written down
-      explicitly.
+- [ ] Where the parent has no reliable OS record for a child, that gap is written
+      down explicitly as `not retained`, never filled in from the manager,
+      launcher, worker self-report, or task-runner state.
+- [ ] The grace-period warning is quoted verbatim with its count, and the count
+      is reconciled against the set of ranks with no OS record as a separate
+      check. A matching count does not recover a missing code; a mismatch leaves
+      both the count and the rows open.
 
 ## Layer 4: Shutdown Trace
 
@@ -44,7 +52,12 @@ This layer says the serving path worked. It says nothing about teardown.
 ## Reporting
 
 - [ ] The acceptance result states which stages exited cleanly and which did not.
-- [ ] A gap shared with the control is labelled pre-existing, and the gap is
-      still listed as unresolved.
+- [ ] The acceptance line lists the ranks with an OS record of `0` and the rows
+      marked `not retained`; it never claims that every rank exited cleanly, and
+      worker self-reports are not counted as exits.
+- [ ] A gap shared with the control is labelled common-cause, and each arm is
+      judged against the exit requirement fixed before the run; a shared warning
+      does not waive that requirement for either arm, and the gap stays listed
+      as unresolved.
 - [ ] Clean exits observed in a different configuration (for example a
       single-stage smoke) are not used as evidence for this configuration.
