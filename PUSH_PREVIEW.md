@@ -13,8 +13,10 @@ Ascend encoder leader. It records:
 
 - the public commits (`80d6b6fc` candidate, `085d7dba` no-overlap baseline,
   `9b753874` target-branch control) and the fixed Ref2VA request;
-- the 8-NPU end-to-end contract (120/120 formal requests, within-noise latency
-  deltas, no end-to-end speedup claim) and the single-NPU component result;
+- the 8-NPU end-to-end contract (120/120 formal requests on the FFmpeg
+  `testsrc2`/`aevalsrc` synthetic reference, within-noise latency deltas, no
+  end-to-end speedup claim) and the single-NPU `encode_media` component result on
+  the public PyTorch synthetic tensors;
 - bit-exact 107-frame precision evidence on the public synthetic benchmark pair
   (max absolute RGB difference 0, PSNR inf, SSIM 1.000000, identical PCM and MP4
   hashes);

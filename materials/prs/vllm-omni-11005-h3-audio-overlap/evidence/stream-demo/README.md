@@ -3,9 +3,11 @@
 Demonstration pair for
 [vllm-project/vllm-omni#11005](https://github.com/vllm-project/vllm-omni/pull/11005):
 one Ref2VA request per arm on one excerpt of a public real-footage clip. It adds
-no performance number; every timing table in
-[../../validation-and-benefit.md](../../validation-and-benefit.md) remains the
-FFmpeg-synthetic benchmark.
+no performance number, and no timing number is taken from it. The timing tables
+in [../../validation-and-benefit.md](../../validation-and-benefit.md) keep their
+own inputs: the eight-NPU end-to-end timing uses the FFmpeg `testsrc2`/`aevalsrc`
+synthetic reference, and the single-NPU `encode_media` stage timing uses public
+PyTorch synthetic tensors.
 
 This directory contains no media binary: it keeps the public source, the exact
 excerpt recipe, the request identity, the measured comparison and the recorded
