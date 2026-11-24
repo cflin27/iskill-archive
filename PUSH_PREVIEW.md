@@ -18,6 +18,11 @@ Ascend encoder leader. It records:
 - bit-exact 107-frame precision evidence on the public synthetic benchmark pair
   (max absolute RGB difference 0, PSNR inf, SSIM 1.000000, identical PCM and MP4
   hashes);
+- a natural-scene demonstration pair on a 10.000-13.000 s excerpt of the public
+  CC0 1.0 Commons clip `StreamOfFlowingWater.webm`: source SHA-1/SHA-256, excerpt
+  window and input hashes, prompt, seed 3101, observed two-call-per-arm CPU
+  44.1 -> 32 kHz resampling coverage, and an identical 107-frame/PCM/MP4
+  comparison. It adds no timing number and commits no media binary;
 - public FFmpeg `testsrc2`/`aevalsrc` and PyTorch input recipes with SHA-256
   values, plus the no-device unit-test result and its pre-existing allocator
   failure;

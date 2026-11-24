@@ -42,6 +42,12 @@ the PR branch. There is therefore no maintainer comment awaiting a reply.
   -1.202% wall time versus baseline.
 - Precision on that synthetic benchmark pair: 107/107 frames, max absolute RGB
   difference 0, PSNR inf, SSIM 1.000000, identical MP4/PCM hashes.
+- Natural-scene demonstration pair, one request per arm on a public CC0
+  Wikimedia Commons excerpt: 107/107 frames identical, max absolute RGB
+  difference 0, PSNR inf, SSIM 1.000000, identical PCM and MP4 hashes. Two CPU
+  44.1 -> 32 kHz resampler calls per arm were observed, on the main thread in the
+  baseline and on the audio-preparation worker in the PR. This pair is not a
+  timing sample.
 
 ## Reply Shape
 

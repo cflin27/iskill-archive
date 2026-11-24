@@ -1,0 +1,72 @@
+{
+  "title": "StreamOfFlowingWater.webm",
+  "page_url": "https://commons.wikimedia.org/wiki/File:StreamOfFlowingWater.webm",
+  "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/StreamOfFlowingWater.webm",
+  "author": "Patjos.scot",
+  "license": "CC0 1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "attribution_required": false,
+  "commons_sha1": "373afa93e8f271a91a3675d978fce507f8fd386a",
+  "source_sha256": "26e471fdcd86dc91d4aa2a9a1eca0733b1761cad3c86d94196e3c6b60de4e96f",
+  "source_bytes": 14825892,
+  "clip_start_seconds": 10.0,
+  "clip_end_seconds": 13.0,
+  "clip_duration_seconds": 3.0,
+  "input_sha256": {
+    "reference.mp4": "c76e0b6de38411fc1bca13ef12d93a2e9e85e886ba1480f335a6128e594c36b9",
+    "reference.wav": "9b758de40e81d5ff5b27fb5b73fbff88bfc8eae23c8eb3a6e2bf8de67e98bfd2"
+  },
+  "decoded_reference_audio": {
+    "video_original_audio": {
+      "sample_rate": 44100,
+      "channels": 2,
+      "samples": 132653,
+      "device": "cpu",
+      "rms": 0.10939805209636688,
+      "requires_model_resample_to": 32000
+    },
+    "standalone_original_audio": {
+      "sample_rate": 44100,
+      "channels": 2,
+      "samples": 132300,
+      "device": "cpu",
+      "rms": 0.10966358333826065,
+      "requires_model_resample_to": 32000
+    }
+  },
+  "source_streams": [
+    {
+      "codec_type": "video",
+      "codec_name": "vp8",
+      "width": 1440,
+      "height": 1080,
+      "r_frame_rate": "30/1",
+      "sample_rate": null,
+      "channels": null,
+      "duration": null
+    },
+    {
+      "codec_type": "audio",
+      "codec_name": "vorbis",
+      "width": null,
+      "height": null,
+      "r_frame_rate": "0/0",
+      "sample_rate": "48000",
+      "channels": 2,
+      "duration": null
+    }
+  ],
+  "crop": "Scale short edge to 256, then center-crop 256x256; convert video to 24 fps.",
+  "prompt": "A steady close-up of a flowing stream. Preserve the natural water movement and the original scene, with realistic continuous flowing-water sounds and a steady camera.",
+  "request": {
+    "seed": 3101,
+    "width": 768,
+    "height": 768,
+    "fps": 24,
+    "duration_seconds": 4,
+    "num_inference_steps": 12,
+    "flow_shift": 12,
+    "audio_flow_shift": 3,
+    "task": "ref2va"
+  }
+}

@@ -11,6 +11,11 @@
 - Result: component `encode_media` wall time -1.202%; end-to-end mean latency
   -0.092% (within noise, no E2E speedup claimed); on the synthetic benchmark
   pair, output bit-identical across 107 frames, audio and the encoded MP4.
+- Demonstration: on a 10.000-13.000 s excerpt of public CC0 creek footage, one
+  request per arm also decoded bit-identically (107/107 frames, max RGB
+  difference 0, PSNR inf, SSIM 1.000000, identical PCM and MP4 hashes), with two
+  CPU 44.1 -> 32 kHz resampler calls per arm observed. No timing number comes
+  from this pair.
 
 ## Environment
 
@@ -26,6 +31,10 @@
   128x128 RGB frames and 15 s of 44.1 kHz stereo sine audio
   (`evidence/stage_synthetic_input.py`). The **component-stage and host
   call-interval** numbers come from this input, not from the FFmpeg media.
+- Demonstration input: a 10.000-13.000 s excerpt of the public CC0 1.0 clip
+  [StreamOfFlowingWater.webm](https://commons.wikimedia.org/wiki/File:StreamOfFlowingWater.webm)
+  by Patjos.scot, rebuilt by `evidence/stream-demo/stream-inputs.sh`. The demo
+  contributes the accuracy record below and no performance number.
 - Hardware: Ascend 950PR, 8 NPUs for end-to-end (USP8, text-encoder TP8), one
   NPU for the component stage.
 - Runtime: vLLM 0.34.0, CANN 9.3.0, torch/torchaudio 2.10.0,
@@ -39,9 +48,10 @@
 ## Correctness
 
 The baseline column is the no-overlap commit `085d7dba` and the candidate column
-is `80d6b6fc` unless a cell names a different commit. All rows and all latency
-numbers below were produced from the synthetic inputs described under
-Environment; no natural-scene footage was used for them.
+is `80d6b6fc` unless a cell names a different commit. Every row in this table and
+every latency number in this file comes from the synthetic inputs described under
+Environment; the demonstration subsection below names its own input and
+contributes no latency number.
 
 | Check | Baseline | Candidate | Result |
 | --- | --- | --- | --- |
@@ -66,6 +76,27 @@ counted as passing. Failure-path coverage (visual-encode error cancels queued
 work and joins the worker; preparation error propagates after join) and
 fallback coverage (non-leader, native rate, audio-only, CPU autocast) are CPU
 unit tests; no NPU failure injection was run.
+
+### Natural-scene demonstration pair
+
+One Ref2VA request per arm on the public CC0 excerpt; source, excerpt window,
+input hashes, prompt, seed, resampler records and the full comparison are in
+`evidence/stream-demo/`.
+
+| Check | Result |
+| --- | --- |
+| Inputs (both arms) | `reference.mp4` SHA-256 `c76e0b6d...c36b9`, `reference.wav` `9b758de4...bfd2`; prompt and seed 3101 identical |
+| Output media | 768x768, 107 frames, 24 fps, 4.458333 s; identical on both arms |
+| Max absolute RGB difference | 0 on all 107 frames (MSE 0) |
+| FFmpeg PSNR / SSIM (YUV444P) | PSNR inf; SSIM 1.000000, all channels |
+| Decoded PCM s16le | identical; maximum sample difference 0 |
+| Original MP4 files | byte-identical, SHA-256 `154337ac...f9f9` |
+| Actual resampling coverage | two CPU 44.1 -> 32 kHz calls per arm, stereo, 132,300 -> 96,000 samples; baseline on the main thread in `encode_waveform`, PR on the audio-preparation worker in `_prepare_waveform` |
+
+The pair is a correctness demonstration, not a timing sample: the demo request
+was not measured and adds no latency number to this file. Byte-level PCM and RGB
+hashes depend on the FFmpeg build; the invariant asserted here is that both arms
+are identical. The recorded hashes use the validation environment's FFmpeg 4.4.2.
 
 ## Performance
 
@@ -106,6 +137,9 @@ visual encoding `84.070 -> 84.422 ms`, audio encoding incl. preparation
 counts both the worker-thread preparation and the short in-call preparation of
 already-resampled waveforms; it is a scheduling result, not CPU-operator
 speedup.
+
+The natural-scene demonstration pair is a correctness demonstration, not a
+timing sample, and contributes no number to the tables above.
 
 ## Reproduction
 
@@ -167,6 +201,22 @@ Then compare the two saved outputs from the same archive directory:
 bash evidence/ref2va-compare.sh   # reads baseline.mp4 and candidate.mp4
 ```
 
+Step 4 covers the natural-scene demonstration pair (accuracy only, not timed).
+It lives in its own directory with its own inputs and prompt, so it cannot
+overwrite the synthetic `reference.mp4`/`reference.wav`:
+
+```bash
+# 4) Natural-scene demonstration pair: same two services, demo inputs.
+cd evidence/stream-demo
+curl -fL -o StreamOfFlowingWater.webm \
+  'https://upload.wikimedia.org/wikipedia/commons/e/e0/StreamOfFlowingWater.webm'
+sha256sum StreamOfFlowingWater.webm   # 26e471fd...4e96f
+bash stream-inputs.sh StreamOfFlowingWater.webm .
+# Send stream-prompt.txt and reference.mp4/reference.wav to each exported base
+# URL as in step 3, saving baseline.mp4 and candidate.mp4 in this directory.
+bash stream-comparison.sh baseline.mp4 candidate.mp4 stream-baseline-vs-pr.mp4
+```
+
 The Ascend environment follows the public MindIE-SD H3 recipe
 ([infer.md](https://github.com/Ascend/MindIE-SD/blob/dev/examples/minimax-h3/infer.md)).
 
@@ -180,6 +230,10 @@ The Ascend environment follows the public MindIE-SD H3 recipe
 - Results are specific to the recorded request, quantization (MXFP8 +
   RainFusion) and device configuration; precision is asserted only against the
   no-overlap baseline at the same settings, not against BF16.
+- The natural-scene demonstration is a single pair on public CC0 footage and is
+  not a timing sample; it adds no latency claim and does not extend the result to
+  other inputs. Byte-level PCM and RGB hashes depend on the FFmpeg build; the
+  asserted invariant is that both arms are identical.
 - CPU unit-test coverage is CPU-only; on a device-capable runner the allocator
   case may behave differently, so the recorded pass/fail split is specific to
   the no-device container.

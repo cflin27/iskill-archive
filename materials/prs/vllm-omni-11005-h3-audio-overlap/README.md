@@ -26,6 +26,12 @@ private media.
   frames compared at original 768x768 RGB24: maximum absolute difference 0,
   PSNR inf, SSIM 1.000000, identical decoded PCM SHA-256 and identical MP4
   SHA-256.
+- **Demonstration pair**: one request per arm on a 10.000-13.000 s excerpt of the
+  public CC0 creek footage `StreamOfFlowingWater.webm`, also bit-identical —
+  107/107 frames, maximum absolute RGB difference 0, PSNR inf, SSIM 1.000000,
+  identical decoded PCM and identical output MP4 hashes, with two CPU
+  44.1 -> 32 kHz resampler calls per arm observed. The demo is a correctness
+  demonstration, not a timing sample.
 
 ## Public validation contract
 
@@ -37,7 +43,7 @@ private media.
 | Baseline commit | `085d7dba33eca00f44753f8c4a5e11bd7c669f38` |
 | Target-branch control | `9b753874d73fb40204418a457d22d802b731d19f` (`main` at validation time) |
 | Public model | `MiniMaxAI/MiniMax-H3` Ref2VA task |
-| Public inputs | End-to-end: FFmpeg `testsrc2` + `aevalsrc` synthesized reference video/audio. Component stage: public PyTorch synthetic tensors. Unit tests: public test sources |
+| Public inputs | End-to-end: FFmpeg `testsrc2` + `aevalsrc` synthesized reference video/audio. Component stage: public PyTorch synthetic tensors. Demonstration: 10.000-13.000 s excerpt of the CC0 1.0 Wikimedia Commons clip `StreamOfFlowingWater.webm`. Unit tests: public test sources |
 | Hardware | Ascend 950PR, 8 NPUs (USP8, text-encoder TP8) |
 | Runtime | vLLM 0.34.0, CANN 9.3.0, torch/torchaudio 2.10.0, torch_npu 2.10.0.post7, Python 3.12.13 |
 | Image | public A5 image digest `sha256:43a87842...`, built from `3c885f434` |
@@ -53,16 +59,22 @@ private media.
   commits and reply shape.
 - `evidence/`: input recipes, prompt, stage synthetic recipe, provenance and
   metrics JSON (`SHA256SUMS` included).
+- `evidence/stream-demo/`: the natural-scene demonstration pair — public CC0
+  source record, excerpt window and input hashes, prompt, metrics, and the
+  `stream-inputs.sh` / `stream-comparison.sh` reproduction scripts.
 
 ## Media
 
 No video or audio files are committed here. The accuracy evidence for the
 synthetic benchmark pair — the per-frame comparison record plus the decoded
 PCM/MP4 hashes — is in `evidence/`, next to the scripts that rebuild the public
-inputs and recompute the comparison. Accuracy numbers are always computed from
-the original decoded media, never from a presentation file, so this archive keeps
-the evidence and not the presentation media; raw experiment logs are not
-committed here either.
+inputs and recompute the comparison. The natural-scene demonstration pair is
+recorded the same way in `evidence/stream-demo/`, together with its public
+source, excerpt window and input hashes. Accuracy numbers are always computed
+from the original decoded media, never from a presentation file, so this archive
+keeps the evidence and not the presentation media; the comparison videos and the
+paired outputs are delivered with the PR description rather than committed here,
+and raw experiment logs are not committed here either.
 
 ## Security review
 
