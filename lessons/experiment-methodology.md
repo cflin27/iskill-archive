@@ -43,12 +43,20 @@ device probes, and failure triage, see
   position, so one reversed block cannot separate order from those factors.
   Unless the other factors are controlled independently, keep order as a
   possible factor and keep the causal question open.
+- Compare each arm with itself across blocks before attributing a difference to
+  order. If the baseline mean and range hold in both blocks while the candidate
+  mean moves between them, arm order alone does not explain the difference.
+  Keep causality undetermined, name the arm that moved, and do not promote the
+  difference to a source regression or close it as a no-regression result.
 - Fix the decision rule before running: which block decides promotion, which
   threshold applies, and how many blocks are allowed. Rerunning a cell until one
   block passes is block selection, not evidence. Report every block that ran.
 - Keep input, seed, parameters, and warmup count identical between the blocks;
   only arm order should differ. If anything else changed it is a new
-  experiment, not an order control.
+  experiment, not an order control. Record the arm isolation as well: one shared
+  service start or container (and which arm ran first), or one container,
+  process, and cache per arm. A shared startup carries page-cache, compile, and
+  allocator state from the first arm to the second.
 - Apply the same per-round gate to the order-swapped block. Passing it shows the
   original cell did not reproduce under that order; it does not show the
   candidate is faster, and it does not resolve what produced the original cell.

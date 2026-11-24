@@ -66,11 +66,13 @@ or discussion links in `materials/prs/<topic>/README.md`.
   shared failure blocks the comparison based on the required outputs and samples.
 - Treat a capability-gated fast path as two claims: the fast path is entered on
   the intended device, and every other device keeps the original path with
-  identical output. Zero installs and zero calls only show that the gate did not
-  select the fast path. Call the fallback verified only when the outputs also
-  match the baseline and a side-effect check shows no marker, no bound
-  `forward`, and no replaced weights; otherwise report it as fallback selected
-  and the fast-path hit as not covered.
+  identical output. Report the two device classes as separate rows. Zero
+  installs and zero calls only show that the gate did not select the fast path.
+  Call the fallback verified only when the outputs also match the baseline and a
+  side-effect check shows no marker, no bound `forward`, and no replaced
+  weights; otherwise that row stays `fallback selected`. Reserve `not covered`
+  for a device that was not run at all: a missing fallback check does not relabel
+  the intended-device row.
 
 ## References
 

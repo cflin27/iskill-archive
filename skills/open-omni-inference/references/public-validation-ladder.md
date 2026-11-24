@@ -52,11 +52,13 @@ device group intended for the run. Stop at the first failed rung.
 - Only the tested switch or diff changes.
 - Timing and behavior move in the expected direction on a small public case.
 - For a capability-gated path, record per arm the raw device query string, the
-  gate decision, the install count, and the fast-path call count per scope. Zero
-  installs and zero calls show only that the gate selected the fallback; accept
-  the fallback only with baseline output parity and a clean install side-effect
-  check. Until both exist the cell stays `fallback selected`, and the fast-path
-  hit stays `not covered`.
+  gate decision, the install count, and the fast-path call count per scope. Keep
+  one row for the intended device and one per excluded device family, and report
+  them separately. Zero installs and zero calls show only that the gate selected
+  the fallback; accept the fallback only with baseline output parity and a clean
+  install side-effect check. Until both exist that row stays `fallback
+  selected`. `not covered` means the device was not run at all; a missing
+  fallback check does not turn the intended-device row into `not covered`.
 
 ## Rung 7: Formal Evidence
 

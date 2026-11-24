@@ -41,16 +41,30 @@ Per-round gate check:
 ## Order Blocks
 
 Cells that regressed in the main matrix and were rerun alone with the arm order
-reversed. Report each block on its own; never pool it with the matrix.
+reversed. Report each block on its own; never pool it with the matrix. Record
+both arms' statistics in the same row so the blocks can be compared arm by arm.
 
-| Cell | Block | Arm order | Warmup | Samples | Mean | Range | Gate | Verdict |
-| --- | --- | --- | --- | ---: | ---: | --- | --- | --- |
+| Cell | Block | Arm order | Arm isolation | Warmup | Samples | Baseline mean / range | Candidate mean / range | Delta | Gate | Verdict |
+| --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- | --- |
+
+`Arm isolation` records how the two arms were started and separated: one shared
+service start or container (and which arm ran first), or one container, process,
+and cache per arm. A shared startup carries page-cache, operator-compilation,
+and allocator state from the first arm to the second, so record it in the row
+instead of leaving it in the run notes.
 
 Verdict wording: `did not reproduce`, `reproduced`, `inconclusive`. List arm
 order as one possible factor, not as the cause. Keep the original regression row
 and state that causality remains undetermined even when the effect does not
 reproduce: the reversed block changes arm order together with the other factors
 that follow arm position, and `did not reproduce` does not mean `no regression`.
+
+Compare each arm with itself across blocks before attributing the difference to
+arm order. If the baseline mean and range hold in both blocks while the
+candidate mean moves between them, arm order alone does not explain the
+difference; keep causality undetermined, state which arm moved, and do not
+report the result as either a confirmed source regression or a no-regression
+pass.
 
 Pooled-sample statistics (report separately from per-round results):
 
@@ -72,7 +86,10 @@ Pooled-sample statistics (report separately from per-round results):
 Fill this in only for a change whose optimized path depends on a device
 capability check. Zero installs and zero calls show only that the gate selected
 the fallback (`fallback selected`). The row becomes `fallback verified` only
-with parity against the baseline and a clean install side-effect check.
+with parity against the baseline and a clean install side-effect check. Fill one
+row per device class: the intended device and each excluded device family.
+`not covered` means no run on that device; a row that ran but still lacks parity
+or the side-effect check stays `fallback selected`.
 
 | Device (raw query) | Gate | Installs | Fast-path calls by scope | Parity vs baseline | Install side effects | Verdict |
 | --- | --- | ---: | --- | --- | --- | --- |

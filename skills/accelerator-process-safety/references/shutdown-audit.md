@@ -55,9 +55,9 @@ This layer says the serving path worked. It says nothing about teardown.
 - [ ] The acceptance line lists the ranks with an OS record of `0` and the rows
       marked `not retained`; it never claims that every rank exited cleanly, and
       worker self-reports are not counted as exits.
-- [ ] A gap shared with the control is labelled common-cause, and each arm is
-      judged against the exit requirement fixed before the run; a shared warning
-      does not waive that requirement for either arm, and the gap stays listed
-      as unresolved.
+- [ ] A gap shared with the control is labelled a shared observation with root
+      cause unknown, and each arm is judged against the exit requirement fixed
+      before the run; a shared warning does not waive that requirement for
+      either arm, and the gap stays listed as unresolved.
 - [ ] Clean exits observed in a different configuration (for example a
       single-stage smoke) are not used as evidence for this configuration.

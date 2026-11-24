@@ -6,6 +6,16 @@ claims, not one: the fast path is entered on the intended device, and every
 other device keeps the original path with the original output. Validate and
 report them separately.
 
+## Two Device Classes, Two Rows
+
+Report the intended device and the excluded devices as separate rows even when
+only one class was reachable. The intended-device row carries the fast-path
+qualification: gate true, installs above zero, calls above zero on every scope
+the change touches. The excluded-device rows carry the regression-safety claim:
+the original path was kept, its output matches the baseline, and the install
+left no side effects. One class's evidence never fills the other's row, and a
+run on one class says nothing about the other.
+
 ## Evidence Per Device Arm
 
 Record, for each tested device group:
@@ -94,10 +104,17 @@ tests as branch coverage rather than hardware qualification.
     side-effect result yet;
   - `fallback verified`: `fallback selected` plus baseline parity and a clean
     side-effect check;
-  - `not covered`: no run on that device.
-- If the intended device was not available, say so in the acceptance section and
-  record who owns the rerun, instead of leaving the gap implied by a green
-  table.
+  - `not covered`: no run on that device. This verdict describes the run set,
+    not the state of a check: a row on a device that ran, with a missing parity
+    or side-effect result, stays `fallback selected`; an intended device that
+    ran keeps the verdict its own records support (for example `fast path hit`)
+    even while its fallback rows are incomplete.
+- Fill both device classes in the table: the intended device and each excluded
+  family. If the intended device was not available, say so in the acceptance
+  section and record who owns the rerun, instead of leaving the gap implied by a
+  green table. Do not mark the intended-device row `not covered` merely because
+  the fallback rows lack a parity or side-effect result, and do not mark a
+  fallback row `not covered` when it ran but is not yet verified.
 - Scope any sentence that says "supported", "validated", or "still correct" to
   the devices actually tested, and list the untested families next to it.
 

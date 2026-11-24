@@ -12,36 +12,49 @@ general. A public case link is added in `materials/prs/<topic>/` only after the
 evidence is accepted for publication. No case-specific paths, hosts, logs,
 commits, device assignments, or unpublished source are included.
 
+The review revision records the intended and the excluded device classes as
+separate rows, reserves `not covered` for a device that was not run, reports
+each order block with both arms' mean and range plus the arms' startup and
+container isolation, keeps causality undetermined when only one arm moves, and
+labels a warning shared by both arms as a shared observation with an unknown
+root cause.
+
 - `lessons/device-gating-evidence.md` (new): the two claims of a
-  capability-gated fast path, per-device evidence (raw query string, gate
-  decision, install count, per-scope call counts, parity, side effects), the
-  rule that zero fast-path activity proves routing only and that fallback
-  acceptance needs baseline parity plus an install side-effect check, no
-  bridging across device families, stubbed-backend tests versus real decisions,
-  and the fixed verdict vocabulary including `fallback selected`.
+  capability-gated fast path, one row per device class (intended device versus
+  excluded families), per-device evidence (raw query string, gate decision,
+  install count, per-scope call counts, parity, side effects), the rule that
+  zero fast-path activity proves routing only and that fallback acceptance needs
+  baseline parity plus an install side-effect check, no bridging across device
+  families, stubbed-backend tests versus real decisions, and the fixed verdict
+  vocabulary in which `not covered` means only that the device was not run.
 - `lessons/experiment-methodology.md`: adds order-confounded cells and
   independent order-swapped blocks (own warmup and gate, never pooled, arm order
   listed as one possible factor, original regression retained, non-reproduction
-  kept causal-undetermined, block-selection guard, pre-registered decision rule)
-  and the rule that a later block never deletes an earlier regression.
+  kept causal-undetermined, block-selection guard, pre-registered decision rule,
+  recorded arm isolation, and the same-arm comparison across blocks that keeps
+  causality undetermined when only one arm moves) and the rule that a later
+  block never deletes an earlier regression.
 - `lessons/shutdown-and-exit-audit.md`: adds exit codes taken from the parent or
   supervisor wait record, worker self-reports kept in a separate column, `not
   retained` rows, scoped acceptance wording, a warning count checked separately
-  from the missing codes, and shared-warning handling judged against the
-  pre-fixed exit requirement.
+  from the missing codes, and shared-warning handling (a shared observation with
+  an unknown root cause) judged against the pre-fixed exit requirement.
 - `lessons/README.md`: index updated.
 - `skills/accelerator-process-safety/references/shutdown-audit.md`: parent wait
-  records versus worker self-reports, `not retained` rows, and the separate
-  warning-count check in the per-process and reporting checklists.
+  records versus worker self-reports, `not retained` rows, the shared-observation
+  wording, and the separate warning-count check in the per-process and reporting
+  checklists.
 - `skills/open-omni-inference/SKILL.md` and
   `references/public-validation-ladder.md`: capability-gated paths recorded per
-  device arm at the agile A/B rung with fallback acceptance split from routing,
-  device-family scoping of every number at the formal evidence rung, and
-  parent-recorded exit rows at the exit rung.
+  device class at the agile A/B rung, with fallback acceptance split from routing
+  and `not covered` reserved for an untested device; device-family scoping of
+  every number at the formal evidence rung, and parent-recorded exit rows at the
+  exit rung.
 - `skills/performance-experiment-lifecycle/references/experiment-report-template.md`:
   a capability-gating table with a side-effect column, an order-block table with
-  the causal-undetermined verdict wording, and a process-exit table that records
-  the source of each exit code and keeps worker self-reports separate.
+  per-arm mean and range plus an arm-isolation column and the causal-undetermined
+  verdict wording, and a process-exit table that records the source of each exit
+  code and keeps worker self-reports separate.
 
 ## Previous Update: Experiment and Exit-Audit Lessons
 
@@ -202,8 +215,9 @@ Push updates to:
 https://github.com/cflin27/iskill-archive
 ```
 
-Latest suggested commit message:
+Commit subjects for this update
 
 ```text
-Document gating, order-block and exit-authority evidence
+Document device gates, run order, and process exit evidence
+Clarify device coverage and A/B reporting
 ```

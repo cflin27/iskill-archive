@@ -35,9 +35,9 @@ grace-period timeout with a force-kill is the same ungraceful shutdown observed
 in the log instead of the exit code.
 
 The same shutdown defect can exist in the baseline. When both arms show the same
-timeout and force-kill, treat it as a shared common-cause observation with an
-unknown root cause; matching symptoms alone do not show the candidate introduced
-it, and a shared gap does not clear the candidate's own shutdown evidence.
+timeout and force-kill, treat it as a shared observation whose root cause is
+unknown; matching symptoms alone do not show the candidate introduced it, and a
+shared gap does not clear the candidate's own shutdown evidence.
 
 The OS exit status of a process belongs to the parent that reaped it. A worker's
 own status line and the API reply are separate observations, not substitutes.
