@@ -29,9 +29,8 @@ device probes, and failure triage, see
 - Run the component comparison in both execution orders and report the blocks
   separately instead of pooling them.
 - Record the actual work the component performs per arm (for example how many
-  times each sub-model stager loads) and the peak allocator usage. The counts
-  show the mechanism; they do not turn component timing into full-request
-  latency.
+  times each stage loads) and the peak allocator usage. The counts show the
+  mechanism; they do not turn component timing into full-request latency.
 - Keep per-round samples, warmup, output parity, and an independent process exit
   record for the component run. Component parity is evidence for that stage only.
 

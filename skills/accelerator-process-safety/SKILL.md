@@ -73,8 +73,6 @@ down cleanly. After stopping any multi-process service:
 - Verify resource release after the stop: no listener on the task ports, no
   remaining task child processes, and the devices at their idle baseline.
 
-Use [shutdown-audit.md](references/shutdown-audit.md) after stopping a service.
-
 ## References
 
 - Use [ownership-checklist.md](references/ownership-checklist.md) before any

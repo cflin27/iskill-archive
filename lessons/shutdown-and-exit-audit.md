@@ -35,9 +35,9 @@ grace-period timeout with a force-kill is the same ungraceful shutdown observed
 in the log instead of the exit code.
 
 The same shutdown defect can exist in the baseline. When both arms show the same
-timeout and force-kill, it is a pre-existing or environment issue, not something
-the candidate introduced, and it does not clear the candidate's own shutdown
-evidence.
+timeout and force-kill, treat it as likely pre-existing; matching symptoms alone
+do not show the candidate introduced it, and a shared gap does not clear the
+candidate's own shutdown evidence.
 
 ## Next Time
 
@@ -57,10 +57,12 @@ evidence.
 - Write the shutdown result in the acceptance section next to the passing
   numbers, so a graceful-shutdown gap is not hidden under a successful
   performance table.
-- Keep the raw shutdown logs and the PID/exit audit with the evidence.
+- Keep the raw shutdown logs and the PID/exit audit with the private run
+  evidence; publish only the summarized exit audit.
 
 ## Public Sources
 
-- [vllm-project/vllm-omni#9494](https://github.com/vllm-project/vllm-omni/pull/9494):
-  staged native evaluation where encoder manager shutdown did not pass while the
-  request-level results did.
+- [cflin27 comment on vllm-project/vllm-omni#9494, 2026-10-28](https://github.com/vllm-project/vllm-omni/pull/9494#issuecomment-6459234160):
+  eight-NPU A/B runs produced outputs but failed native worker teardown, with the
+  underlying cause unproven; the comment therefore does not show a PR regression
+  or a clean baseline.

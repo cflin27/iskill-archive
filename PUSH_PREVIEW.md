@@ -6,7 +6,7 @@ experiment and exit-audit lessons.
 
 ## Current Update: Experiment and Exit-Audit Lessons
 
-Adds one lesson and one skill reference, and extends three documents. Derived
+Adds one lesson and one skill reference, and extends five documents. Derived
 from a public PR's validation report; no case-specific paths, hosts, logs,
 commits, or unpublished source are included.
 

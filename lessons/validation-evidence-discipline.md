@@ -139,9 +139,9 @@ Read the public input contract before running, then classify each case.
 - An accelerator initialization or pinning error in a CPU-only regression is an
   environment setup failure, not a candidate regression; confirm it on the
   control before spending a run on it.
-- Check the interpreter that spawned workers actually use. A non-path alias can
-  leave the child launch with an empty executable and fail the test for a reason
-  unrelated to the candidate.
+- Check the interpreter that spawned workers actually use. A shell alias that is
+  not an executable on PATH can leave the child launch with an empty executable
+  and fail the test for a reason unrelated to the candidate.
 
 ## Public Sources
 
