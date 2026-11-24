@@ -1,7 +1,34 @@
 # Push Preview: iskill-archive Content
 
-Status: initial archive and Omni PR materials are pushed. Current pending
-update adds validation-evidence lessons and tightens three existing skills.
+Status: initial archive, Omni PR materials and validation-evidence lessons are
+pushed. Current pending update adds the vLLM-Omni PR #11005 audio-overlap
+archive.
+
+## Current Update: vLLM-Omni PR #11005 audio-overlap archive
+
+Adds `materials/prs/vllm-omni-11005-h3-audio-overlap/`, a public-safe archive
+for [vllm-project/vllm-omni#11005](https://github.com/vllm-project/vllm-omni/pull/11005),
+which overlaps MiniMax-H3 CPU audio preprocessing with visual encoding on the
+Ascend encoder leader. It records:
+
+- the public commits (`80d6b6fc` candidate, `085d7dba` no-overlap baseline,
+  `9b753874` target-branch control) and the fixed Ref2VA request;
+- the 8-NPU end-to-end contract (120/120 formal requests, within-noise latency
+  deltas, no end-to-end speedup claim) and the single-NPU component result;
+- bit-exact 107-frame precision evidence on the public synthetic benchmark pair
+  (max absolute RGB difference 0, PSNR inf, SSIM 1.000000, identical PCM and MP4
+  hashes);
+- public FFmpeg `testsrc2`/`aevalsrc` and PyTorch input recipes with SHA-256
+  values, plus the no-device unit-test result and its pre-existing allocator
+  failure;
+- reproduction commands split into the source tree (CPU tests) and the archive
+  directory (inputs, then one request per arm saved as `baseline.mp4` and
+  `candidate.mp4` before comparison);
+- the internal review iteration and unresolved limits (no TTFT, no 50-NFE
+  quality run, fixed quantization/device lane).
+
+It also adds the new entry to `materials/README.md` and `materials/prs/README.md`.
+No private media, raw logs, hostnames, paths or credentials are included.
 
 ## Current Update: Validation Evidence Lessons
 
@@ -100,5 +127,5 @@ https://github.com/cflin27/iskill-archive
 Latest suggested commit message:
 
 ```text
-Add validation evidence lessons and tighten skill gates
+Add vLLM-Omni PR #11005 audio-overlap archive
 ```

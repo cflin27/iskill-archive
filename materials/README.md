@@ -15,6 +15,10 @@ Markdown summaries with public links and reproducible public inputs.
 
 - [prs/vllm-omni-h3-ascend-prs-20261112](prs/vllm-omni-h3-ascend-prs-20261112/):
   six public cflin27 MiniMax-H3 Ascend PRs for `vllm-project/vllm-omni`.
+- [prs/vllm-omni-11005-h3-audio-overlap](prs/vllm-omni-11005-h3-audio-overlap/):
+  public-safe archive for
+  [vllm-project/vllm-omni#11005](https://github.com/vllm-project/vllm-omni/pull/11005):
+  overlapping MiniMax-H3 CPU audio preprocessing with visual encoding.
 
 ## New Archive Checklist
 
