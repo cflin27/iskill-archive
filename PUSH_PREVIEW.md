@@ -1,11 +1,20 @@
 # Push Preview: iskill-archive Content
 
+## Current Update: MiniMax-H3 Audio Encoder Staging Archive
+
+- Adds the [#11004 PR archive](materials/prs/vllm-omni-11004-h3-audio-encoder-staging/README.md), including the
+  design, tested weight placement, six paired 50 NFE comparisons, measured
+  allocator savings during encoding, and full-request results.
+- Adds the [stage-scoped residency lesson](lessons/stage-scoped-residency-evidence.md)
+  on proving that the encoder-only scope ran and keeping its measurements
+  intact when the decoder runs later. Both public indexes are updated.
+
+## Previous Update: Same-Version Noise Baselines
+
 This update builds on the experiment, device, and exit-audit lessons. It adds
 guidance on same-version noise baselines, request-timeline attribution, and
 device-time accounting, and documents the screening evidence for timing an
 optional fast path and the evidence needed to report device occupancy.
-
-## Current Update: Same-Version Noise Baselines
 
 Adds one lesson and updates three documents, four files in total. The lesson is
 distilled from a same-version control run whose evidence is not published yet.

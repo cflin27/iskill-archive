@@ -103,6 +103,12 @@ datasets.
   baseline parity plus side-effect checks, no bridging across device families,
   stubbed-backend tests versus real decisions, and the fixed verdict vocabulary
   in which `not covered` means only that the device was not run.
+- [stage-scoped-residency-evidence.md](stage-scoped-residency-evidence.md):
+  changing which weight groups stay resident in one stage — device selected from
+  the running submodule rather than the first parameter, split-hit proof and
+  fallback coverage, empty-tensor storage aliasing, stage-keyed windows that a
+  later stage cannot overwrite, allocated versus reserved release after a
+  failure, and stage saving versus full-request peak.
 - [templates/lesson.md](templates/lesson.md): lesson entry template.
 
 ## Promotion Rule
