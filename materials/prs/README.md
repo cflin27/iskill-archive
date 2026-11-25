@@ -15,6 +15,10 @@ materials/prs/<repo-or-pr-id>/
 - [vllm-omni-h3-ascend-prs-20261112](vllm-omni-h3-ascend-prs-20261112/):
   public-safe archive for six cflin27 MiniMax-H3 Ascend PRs in
   `vllm-project/vllm-omni`.
+- [vllm-omni-9468-h3-gn-silu](vllm-omni-9468-h3-gn-silu/): public-safe archive
+  for [vllm-project/vllm-omni#9468](https://github.com/vllm-project/vllm-omni/pull/9468),
+  fusing MiniMax-H3 encoder GroupNorm and SiLU on Ascend 910B devices with a
+  device-gated install and explicit fallback coverage.
 - [vllm-omni-11005-h3-audio-overlap](vllm-omni-11005-h3-audio-overlap/):
   public-safe archive for
   [vllm-project/vllm-omni#11005](https://github.com/vllm-project/vllm-omni/pull/11005),

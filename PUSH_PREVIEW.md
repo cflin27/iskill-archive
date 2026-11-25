@@ -20,6 +20,43 @@ This seven-file update adds general validation guidance.
   adds timing applicability and a per-group occupancy table.
 - `PUSH_PREVIEW.md` records this update.
 
+## vLLM-Omni #9468 GroupNorm + SiLU archive
+
+Adds `materials/prs/vllm-omni-9468-h3-gn-silu/`, a public-safe archive for
+[vllm-project/vllm-omni#9468](https://github.com/vllm-project/vllm-omni/pull/9468),
+which fuses MiniMax-H3 encoder GroupNorm and SiLU on Ascend 910B devices behind
+a device-name gate. It records:
+
+- the public base and candidate commits, the public model revision, and the
+  public input/protocol artifact;
+- the install and eligibility design: 910B-family name check, callable vendor
+  symbol, image/video encode scopes, and the original forward for every other
+  device, scope, dtype, hook, training, parallel or compilation case;
+- CPU regression on both arms, the per-device-class coverage table
+  (`fallback verified` for the tested device, `not covered` for 910B and
+  `910_93`/`910C`), and the rule that a fallback run is not a fast-path
+  qualification;
+- paired end-to-end precision at 1 and 50 NFE for image and video conditioning,
+  with byte-identical original MP4s, RGB24/PCM maximum difference 0, per-frame
+  RGB PSNR infinity and raw YUV SSIM 1.000000;
+- the earlier-revision fused-path component A/B (0.875% / 0.635% encoder wall
+  time, exact arrays), kept separate from end-to-end latency;
+- the end-to-end latency observations on the fallback device, including the
+  image 1 NFE launch-order blocks with the cause of variation undetermined;
+- the encoder force-kill / missing per-rank exit-code limitation, shared by both
+  arms;
+- four side-by-side GIFs and the public maintainer reply links.
+
+It also adds the entry to `materials/README.md` and `materials/prs/README.md`,
+and cross-references the older six-PR archive. No private media, prompts, raw
+logs, hostnames, paths, device assignments or credentials are included.
+
+Commit subject for this update:
+
+```text
+Add vLLM-Omni #9468 GroupNorm + SiLU PR archive
+```
+
 ## Previous Update: Generated Output Identity and Container Input Access
 
 Adds one lesson and updates nine documents, ten files in total. The related

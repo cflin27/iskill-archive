@@ -37,4 +37,9 @@ sanitized publication summaries. They are not raw local logs.
 - #9467 initial and repeated component measurements differ in magnitude; the
   repeated 35.29% result is the headline component number.
 - Native precision checks are 1-NFE public cases and do not claim 50-NFE quality.
+- #9468 has a dedicated archive at
+  [../vllm-omni-9468-h3-gn-silu/](../vllm-omni-9468-h3-gn-silu/). The row above
+  describes its earlier 1-NFE evidence; the newer paired image/video x 1/50-NFE
+  campaign, the per-device-class coverage table and the device-gating limits are
+  recorded there.
 - No private cases, private prompts, or private checkpoints are used or archived.
