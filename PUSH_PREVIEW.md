@@ -221,3 +221,14 @@ Commit subjects for this update
 Document device gates, run order, and process exit evidence
 Clarify device coverage and A/B reporting
 ```
+
+## vLLM-Omni PR #9468 precision comparison GIFs
+
+Adds four 124-frame, silent side-by-side animations under
+`materials/prs/vllm-omni-9468-h3-gn-silu/assets/` for
+[vLLM-Omni PR #9468](https://github.com/vllm-project/vllm-omni/pull/9468).
+They show the baseline on the left and the candidate on the right for image
+and video conditioning at 1 and 50 NFE, using the
+[public Ref2VA inputs](https://github.com/cflin27/vllm-omni/tree/9483ed912963662b7a9d5220a0d200e2060c6761).
+The animations are resized for display. The precision measurements use the
+original output files.
