@@ -89,6 +89,22 @@ own status line and the API reply are separate observations, not substitutes.
   record and exited `0`. A shared warning does not waive that requirement for
   either arm; it is reported as a limitation of both arms.
 
+## Device Occupancy
+
+Record each group the task actually held. Keep the first timestamped
+observation that ties a task process to the group and the timestamped
+post-cleanup observation that confirms release against the idle baseline.
+List each unfinished block with its last completed step and stop reason.
+Report release and the per-process OS wait results independently.
+
+Label the two timestamps as observations. Compute a duration lower bound
+from a retained interval with evidence of continuous task ownership, using
+comparable timestamps. When an endpoint is missing, use only the portion
+that the retained records establish. If the records establish no such
+interval, report the duration as unknown. A reservation, an idle preflight
+snapshot, the last request, and the launcher exit cannot establish the
+occupancy endpoints.
+
 ## Next Time
 
 - Capture per-process exit codes from the parent's wait status for the

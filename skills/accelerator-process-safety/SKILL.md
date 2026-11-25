@@ -76,6 +76,12 @@ can mislead cleanup logic.
   and recheck every intended card's occupancy and idle baseline with the same
   tool used before launch.
 
+- For each device group actually used, retain timestamped evidence of first
+  confirmed task ownership and verified release. Record unfinished blocks and
+  their stop reasons. If either endpoint is missing, report only a lower bound
+  from evidence of continuous ownership or mark duration unknown. Retain
+  per-process OS wait status alongside the release evidence.
+
 ## Shutdown Audit
 
 A successful request and an exit-0 launcher do not prove that the workers shut

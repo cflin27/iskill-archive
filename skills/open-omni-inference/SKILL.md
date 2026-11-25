@@ -97,6 +97,11 @@ or discussion links in `materials/prs/<topic>/README.md`.
   weights; otherwise that row stays `fallback selected`. Reserve `not covered`
   for a device that was not run at all: a missing fallback check does not relabel
   the intended-device row.
+- Confirm actual calls in each intended scope on the timed request shape
+  before formal timing. A confirmed zero makes fast-path timing inapplicable
+  for that scope. An excluded-device smoke check closes when routing, zero
+  install and call counts, baseline parity, and clean side effects are all
+  verified.
 
 ## References
 

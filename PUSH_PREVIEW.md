@@ -1,10 +1,26 @@
 # Push Preview: iskill-archive Content
 
-This update builds on the experiment, device, and exit-audit lessons. It adds
-guidance on device numbering, allocator-peak scope, native output alignment, and
-generated-output identity.
+This update documents the screening evidence for timing an optional fast
+path and the evidence needed to report device occupancy.
 
-## Current Update: Generated Output Identity and Container Input Access
+## Current Update — Fast-Path Screening and Device Occupancy
+
+This seven-file update adds general validation guidance.
+
+- `lessons/device-gating-evidence.md` records scoped hit confirmation before
+  timing and the evidence that closes an excluded-device fallback check.
+- `lessons/shutdown-and-exit-audit.md` defines observed occupancy endpoints,
+  unfinished blocks, and the evidence for a duration lower bound.
+- `skills/accelerator-process-safety/SKILL.md` adds the occupancy record to
+  cleanup.
+- `skills/open-omni-inference/SKILL.md` adds hit and fallback checks.
+- `skills/performance-experiment-lifecycle/SKILL.md` adds hit confirmation
+  to screening.
+- `skills/performance-experiment-lifecycle/references/experiment-report-template.md`
+  adds timing applicability and a per-group occupancy table.
+- `PUSH_PREVIEW.md` records this update.
+
+## Previous Update: Generated Output Identity and Container Input Access
 
 Adds one lesson and updates nine documents, ten files in total. The related
 public case is
