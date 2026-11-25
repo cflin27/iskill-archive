@@ -20,6 +20,16 @@ This seven-file update adds general validation guidance.
   adds timing applicability and a per-group occupancy table.
 - `PUSH_PREVIEW.md` records this update.
 
+## vLLM-Omni #9467 precision GIF
+
+Adds a synchronized 50 NFE comparison for
+[vllm-project/vllm-omni#9467](https://github.com/vllm-project/vllm-omni/pull/9467)
+using six frames from the public Ref2VA demo. It shows the baseline on the
+left and the candidate on the right. The PR reports precision from the
+original outputs.
+
+- [Six-image comparison](materials/prs/vllm-omni-9467-h3-t1-conv3d/assets/pr9467-images-50nfe-baseline-candidate.gif)
+
 ## vLLM-Omni #9494 precision GIFs
 
 Adds three synchronized 50 NFE comparisons for
