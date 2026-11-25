@@ -15,6 +15,10 @@ materials/prs/<repo-or-pr-id>/
 - [vllm-omni-h3-ascend-prs-20261112](vllm-omni-h3-ascend-prs-20261112/):
   public-safe archive for six cflin27 MiniMax-H3 Ascend PRs in
   `vllm-project/vllm-omni`.
+- [vllm-omni-11003-h3-stream-tile](vllm-omni-11003-h3-stream-tile/):
+  public-safe archive for the MiniMax-H3 streamed reference-video tile PR in
+  `vllm-project/vllm-omni`, including the eight-rank functional A/B, the public
+  Ref2VA precision comparison, and stage and end-to-end gates.
 - [vllm-omni-9468-h3-gn-silu](vllm-omni-9468-h3-gn-silu/): public-safe archive
   for [vllm-project/vllm-omni#9468](https://github.com/vllm-project/vllm-omni/pull/9468),
   fusing MiniMax-H3 encoder GroupNorm and SiLU on Ascend 910B devices with a

@@ -1,6 +1,48 @@
 # Push Preview: iskill-archive Content
 
-## Current Update: MiniMax-H3 Audio Encoder Staging Archive
+This update adds the public archive and one evidence lesson for a streamed
+reference-video input stage in `vllm-project/vllm-omni`, revised after an
+independent review of the PR body, archive and comparison video.
+
+## Current Update: MiniMax-H3 Streamed Reference-Video Tile Archive
+
+Adds a public PR archive and one lesson for a streamed input stage. No private
+hosts, paths, logs, checkpoints, media, or internal case names are included.
+
+- `materials/prs/vllm-omni-11003-h3-stream-tile/` (new): public archive for
+  [vllm-project/vllm-omni#11003](https://github.com/vllm-project/vllm-omni/pull/11003),
+  an opt-in path that uploads only each rank's reference-video tiles. Covers the
+  design, the eight-rank functional A/B, the public Ref2VA precision comparison,
+  the stage and end-to-end performance gates, the public input source and the
+  stated limits (allocator peak versus device HBM, latency-neutral confidence
+  interval, same-host interference, 1-NFE smoke-only boundary).
+- `lessons/streamed-stage-evidence.md` (new): proving a streaming or staged
+  input change — hit counters before timing, content equality against the
+  ordinary path, explicit fallback checks, allocator-versus-device memory
+  naming, per-layer A/A calibration, neutral reporting when a CI includes zero,
+  runtime log-scope verification, concurrent-workload records, and unprivileged
+  container identity.
+- `lessons/README.md` and `materials/prs/README.md`: indexes updated.
+
+Revision after independent review:
+
+- Reproduction pins both arm SHAs and the version-pinned recipe and fixture
+  instead of a floating branch tip; the broad `pytest` directory command is
+  labeled an independent reproduction entry, not the recorded test set.
+- Correctness rows label the rows hashes as prefixes, and CPU 159/130 counts are
+  recorded as reused from an earlier same-commit container run.
+- Performance records one warm-up plus five formal samples per A/A and ABBA
+  block (ten formal samples per arm), both VAE confidence intervals as
+  including zero, the 3% regression-guard verdict, and the full-request
+  allocated-flat / reserved −0.2187% boundary.
+- `review-response.md` classifies the #10167 `encode_video` conflict as
+  deferred, the stack-tiling real-path coverage as CPU-test evidence, the
+  plain-callable `__globals__` lookup, and the contiguous-wrapper item as not
+  adopted / disputed.
+- Adds the 124-frame side-by-side GIF from the silent comparison. Audio
+  metrics come from the original outputs.
+
+## Previous Update: MiniMax-H3 Audio Encoder Staging Archive
 
 - Adds the [#11004 PR archive](materials/prs/vllm-omni-11004-h3-audio-encoder-staging/README.md), including the
   design, tested weight placement, six paired 50 NFE comparisons, measured
@@ -560,6 +602,21 @@ Commit subjects for this update, oldest first
 Document device gates, run order, and process exit evidence
 Clarify device coverage and A/B reporting
 Document device numbering, peak scope, and native output alignment
+```
+
+## Pending: MiniMax-H3 Streamed Tile PR Archive
+
+Commit subject for the pending archive update:
+
+```text
+Add MiniMax-H3 streamed tile PR archive and stage evidence lesson
+```
+
+Follow-up revision commit subject for the same pending archive (fix
+reproduction pinning, review-response classification, and evidence wording):
+
+```text
+Revise MiniMax-H3 streamed tile archive after independent review
 ```
 
 ## vLLM-Omni PR #9468 precision comparison GIFs

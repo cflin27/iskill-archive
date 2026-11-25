@@ -109,6 +109,11 @@ datasets.
   fallback coverage, empty-tensor storage aliasing, stage-keyed windows that a
   later stage cannot overwrite, allocated versus reserved release after a
   failure, and stage saving versus full-request peak.
+- [streamed-stage-evidence.md](streamed-stage-evidence.md): proving a streamed
+  or staged input change — hit counters before timing, content equality against
+  the ordinary path, explicit fallbacks, allocator versus device memory naming,
+  per-layer A/A calibration, runtime log scope, concurrent workloads, and
+  unprivileged container identity.
 - [templates/lesson.md](templates/lesson.md): lesson entry template.
 
 ## Promotion Rule
