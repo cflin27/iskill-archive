@@ -22,11 +22,26 @@ in the consuming repository's own `AGENTS.md`.
 
 Before starting a workload:
 
-1. Record the intended device group, ports, output directory, and service name.
-2. Check device occupancy with the platform's supported tools.
-3. Check listening ports and identify existing owners.
-4. Confirm that any reusable service has the expected model/workload identity.
-5. If ownership is unclear, choose another verified-free resource or stop.
+1. Record the intended device group by role, its host physical cards, the
+   container device node mapping, the runtime visibility value and the selector
+   that accepts it, the framework index after masking, ports, output directory,
+   and service name.
+2. Confirm device access authorization before any probe. Check which device
+   nodes the container presents and the policy that governs opening them: a
+   devices cgroup allow/deny list, file permissions, or the platform's
+   equivalent. Confirm that the run can open only the device nodes it was
+   granted. If the effective access scope cannot be confirmed, the launch
+   pre-check fails: do not probe, and do not treat a successful allocation or a
+   matching visible count as authorization.
+3. Confirm the numbering end to end as separate layers: the index the installed
+   runtime's visibility selector accepts, the framework index after masking, and
+   the host physical card each maps to. Do not assume the host index is the
+   selector index, or that a container node number is either one. A correct
+   visible count does not prove physical ownership.
+4. Check device occupancy with the platform's supported tools.
+5. Check listening ports and identify existing owners.
+6. Confirm that any reusable service has the expected model/workload identity.
+7. If ownership is unclear, choose another verified-free resource or stop.
 
 Do not launch a baseline and candidate on the same physical device group at the
 same time unless the experiment explicitly requires and records that layout.
@@ -38,6 +53,10 @@ Use multiple signals before stopping or reusing a process:
 - PID, parent PID, process group, and session.
 - Command line and working directory.
 - Start time, output/log directory, lock file, or state file.
+- The physical card each visible/logical device maps to, and the host-side
+  process holding it.
+- The access policy that governs the device nodes the process opened: a devices
+  cgroup allow/deny list, file permissions, or the platform's equivalent.
 - Open accelerator device files.
 - Listening port and bound address.
 - Service metadata endpoint, when available.
@@ -53,7 +72,9 @@ can mislead cleanup logic.
 - Treat zombie processes as already exited; do not report them as live work.
 - Do not delete locks, state, traces, or cache directories unless they are tied
   to the current run and no writer remains.
-- After cleanup, verify that ports, devices, and child processes were released.
+- After cleanup, verify that ports, devices, and child processes were released,
+  and recheck every intended card's occupancy and idle baseline with the same
+  tool used before launch.
 
 ## Shutdown Audit
 
@@ -61,6 +82,12 @@ A successful request and an exit-0 launcher do not prove that the workers shut
 down cleanly. After stopping any multi-process service:
 
 - Record the exit code of the launcher, each stage manager, and each rank.
+- Persist each parent's OS wait record in the process that actually reaps the
+  child, after that OS wait completes and before that reaper exits. A host
+  supervisor that re-adopts an orphan after the launcher exits still owns the
+  wait, so the deadline is the reaper's exit, not the launcher's or the
+  container's; a record not persisted by then is `not retained`, not an inferred
+  clean exit.
 - Read a negative code as a signal termination, and a grace-period timeout plus
   force-kill log as the same ungraceful condition seen in another layer.
 - Keep `atexit` or equivalent end-of-run markers for ranks whose numeric code was
@@ -76,6 +103,6 @@ down cleanly. After stopping any multi-process service:
 ## References
 
 - Use [ownership-checklist.md](references/ownership-checklist.md) before any
-  cleanup or reuse decision.
+  launch or probe, and before any cleanup or reuse decision.
 - Use [shutdown-audit.md](references/shutdown-audit.md) to collect exit and
   resource-release evidence after a stop.

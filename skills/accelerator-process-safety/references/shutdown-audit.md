@@ -25,6 +25,17 @@ This layer says the serving path worked. It says nothing about teardown.
 - [ ] Each rank or worker's exit code recorded from its parent's OS wait status.
 - [ ] Worker self-reported status (status file, log line, "exited cleanly"
       message) kept on a separate line and not used as the exit code.
+- [ ] Wait records captured by the process that actually reaps each child — the
+      in-container parent, or a host supervisor when that supervisor owns the
+      wait — before that reaper exits; a record not captured then is written as
+      `not retained`, not reconstructed afterwards.
+- [ ] Where a supervisor or reaper parent re-adopts descendants, the actual
+      reaper persists each wait record before it exits, and the ranks it covered
+      are recorded; those wait records are used as the parent's OS status, not
+      as worker self-reports.
+- [ ] `not retained` is decided per rank from whether that rank's own OS wait
+      record was retained. A group record, a covered count, or a matching
+      warning count does not recover a rank whose record is missing.
 - [ ] Where a worker exited by signal (negative code), the signal and the
       preceding log lines are recorded.
 - [ ] Where the parent has no reliable OS record for a child, that gap is written
@@ -52,6 +63,9 @@ This layer says the serving path worked. It says nothing about teardown.
 ## Reporting
 
 - [ ] The acceptance result states which stages exited cleanly and which did not.
+- [ ] Clean exit and resource release are reported as separate verdicts; a
+      successful cleanup (containers removed, ports freed, devices idle) is not
+      evidence that any rank exited cleanly.
 - [ ] The acceptance line lists the ranks with an OS record of `0` and the rows
       marked `not retained`; it never claims that every rank exited cleanly, and
       worker self-reports are not counted as exits.

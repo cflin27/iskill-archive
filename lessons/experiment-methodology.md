@@ -71,6 +71,30 @@ device probes, and failure triage, see
 - Keep per-round samples, warmup, output parity, and an independent process exit
   record for the component run. Component parity is evidence for that stage only.
 
+## Allocator Peak Scope
+
+- A peak is a scope, not a number. Record, per runner, where statistics are
+  reset, where the framework or a deferred library may reset a nested counter
+  inside that scope, where the peak is read, and whether the window adds a
+  synchronization. Compare only numbers collected over the same boundary.
+- Every execution branch that allocates must sit inside some collection window;
+  an uncovered branch makes the reported peak a lower bound. State which
+  branches and which runners the number covers.
+- Aggregate explicitly. One common rule is the maximum across the calls inside
+  one request per card, then the mean of those per-request peaks over the formal
+  requests. State whether the published value is a single peak, a per-request
+  peak averaged across requests, or a mean of samples.
+- Report allocated and reserved separately. The allocator peak is not
+  necessarily device HBM usage, and it excludes initialization unless the window
+  covers it; label which of those the number is.
+- A component-level peak, a full-request peak, and a fixed offload residue are
+  three observations. A component result does not replace the full-request
+  number, and a residue that persists after an operation is a separate defect
+  from a peak shift during it.
+- Export tensors, latents, or arrays in warmup or in a separate validation
+  request, not inside the timed formal requests. If the formal run did not
+  export them, say the parity claim covers the warmup request only.
+
 ## Async Overlap
 
 - Prove the target interval overlaps before claiming an async speedup.
@@ -88,6 +112,26 @@ device probes, and failure triage, see
   the claim targets that mode.
 - Pair outputs by request order and input identity before judging differences.
 
+## Native Output Alignment
+
+- Read the pipeline's output contract before predicting a response shape. A
+  request in seconds at a fixed frame rate can be rounded up to the model's
+  native frame alignment (for example a `17n+5` boundary), so the returned frame
+  count and duration legitimately differ from `duration * fps`. Do not report
+  the difference as dropped or extra frames.
+- Record the requested duration and frame rate, the aligned frame count, the
+  output frame rate and duration, and the generated latent's temporal extent.
+  Check that the latent extent is consistent with the aligned frame count, and
+  compare outputs at the same aligned index across arms.
+- Keep decoded metrics and container hashes separate: byte-identical containers
+  imply identical decoded bytes, while equal decoded metrics do not imply
+  identical containers, because encoding and packaging can still differ.
+- A warmup request and a formal request with the same seed can still differ
+  slightly in rendering. When both arms show the same warmup-versus-formal
+  difference, treat it as a shared observation with an unknown cause, not as a
+  candidate regression, and do not use warmup latent equality to claim formal
+  latent equality.
+
 ## Measurement Layers
 
 - Host-side call interval, kernel/device time, and end-to-end wall time are three
@@ -103,8 +147,12 @@ device probes, and failure triage, see
 
 ## Timing Hygiene
 
-- Separate warmup, formal timing, and method tracing into distinct runs. Never
-  mix trace overhead into formal samples.
+- Separate warmup, formal timing, method tracing, and any tensor or media export
+  into distinct runs. Never mix trace overhead into formal samples, and never
+  fold export I/O into them.
+- Name which block produced the timing samples and which produced the parity
+  artifacts. An export phase that follows the timed requests does not repair a
+  sample that already includes it; keep the two blocks separate.
 - Fix host-side parallelism (thread count, affinity) across arms when timing a
   CPU-side stage; otherwise the arms measure different machines.
 - Warm up each version independently before its measured repeats.
@@ -124,3 +172,17 @@ device probes, and failure triage, see
 - A regression recorded in one block is never deleted by a later block. Report
   every block, mark whether the effect reproduced, and keep the promotion
   decision in one place that names the evidence it used.
+
+## Public Sources
+
+- The allocator-peak-scope entry is supported by the public component record for
+  [vllm-project/vllm-omni#9467](https://github.com/vllm-project/vllm-omni/pull/9467),
+  whose frozen input package
+  ([cflin27/vllm-omni@9483ed9](https://github.com/cflin27/vllm-omni/tree/9483ed912963662b7a9d5220a0d200e2060c6761))
+  reports per-trial peak allocated bytes for an isolated six-image encoder
+  component run. That scope supports the component-versus-full-request
+  distinction; it does not supply a full-pipeline peak.
+- The native-output-alignment entry is general pipeline-contract guidance. The
+  cited public pages do not publish aligned frame counts or latent extents, so
+  the entry is not presented as a per-case finding from them.
+- No private paths, hosts, logs, or device assignments are included.

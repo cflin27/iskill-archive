@@ -67,6 +67,11 @@ Promote only one selected candidate to formal timing.
   rounds. Report pooled-sample statistics separately from per-round statistics.
 - For distributed stages, state the aggregation rule before averaging, such as
   per-request maximum across ranks.
+- For every allocator or memory peak, state the collection boundary per runner
+  (where it resets, whether a nested library reset inside the window, where it
+  reads), which execution branches it covers, how per-request values are
+  aggregated, and whether the number is allocated or reserved. A component peak,
+  a full-request peak, and a fixed offload residue are separate observations.
 - Keep correctness or deterministic checks separate from performance mode when
   those checks require different runtime flags.
 
@@ -104,6 +109,17 @@ interval, and the full request. Only the full request supports a user-facing
 speedup claim; a wider host call interval is diagnostic, not a kernel
 regression. State which metrics fed the promotion gate and which were
 diagnostic, and report per-round results next to any pooled aggregate.
+
+Record the requested and the actual output shape together: requested duration,
+frame rate, aligned frame count, output frame rate and duration, and the
+generated latent's temporal extent. A pipeline can round the request to a
+native frame alignment, so `duration * fps` is not the expected output count;
+compare arms at the same aligned index and check the latent extent against it.
+
+State whether parity evidence came from warmup exports or from the formal
+outputs. Warmup-exported arrays cannot certify the formal requests. When both
+arms show the same warmup-versus-formal difference, report it as a shared
+observation with an unknown cause rather than a candidate regression.
 
 ## Method References
 

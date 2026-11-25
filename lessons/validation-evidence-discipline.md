@@ -4,7 +4,8 @@ Short public-safe lessons for validating a candidate on shared accelerator
 hosts. These complement the performance lessons in
 [experiment-methodology.md](experiment-methodology.md): that file is about
 measuring, this one is about proving that the measured thing was the intended
-thing and that a failure belongs to the candidate.
+thing and that a failure belongs to the candidate. Generated artifact identity
+is covered in [generated-output-identity.md](generated-output-identity.md).
 
 ## Execution Identity
 
@@ -16,7 +17,10 @@ an import can come from another checkout or overlay.
 Record, per arm and before timing:
 
 - the repository commit and dirty status,
-- the runtime import path and module `__file__`,
+- the Python interpreter path that will spawn workers, and whether the launcher
+  is a shell alias or wrapper instead of an executable,
+- the resolved import path and module `__file__` for the framework and the
+  vendor SDK, not only the intended source tree,
 - key source file hashes,
 - container image digest, driver/runtime/CANN or CUDA versions,
 - the model class the loader actually constructs, not only its alias,
@@ -90,6 +94,31 @@ initialization or modify the tree when the source is read-only; with a shared
 tree they can also leave state that the next arm inherits. Keeping source
 read-only makes the tree clean at the end and makes "which code ran" auditable.
 
+Keep the actual import paths in the experiment identity as well. A read-only
+source checkout can be correct while the service imports the framework or the
+vendor SDK from an overlay, a different site-packages, or a container layer.
+Record the path the process resolves, not the path it was meant to use, and
+never run the service with the read-only source tree as its current working
+directory: point the working, cache, and output directories at writable
+locations. A missing SDK path on the worker interpreter is a launch-environment
+fix; record it as such, next to the first failure.
+
+## Container Input Accessibility
+
+- Verify the read-only source mount and the input directory separately inside
+  the container before the first request. A host absolute symlink can resolve on
+  the host and resolve to nothing inside the container; the first error is a
+  missing path that exists outside.
+- Prefer an independent copy of the public inputs in the run's writable
+  directory over a symlink to a host path. Hash the copied inputs against the
+  public manifest and record the result.
+- When the container cannot see the inputs and the check falls back to the
+  network, a name-resolution or download failure is an environment failure, not
+  a validation result. Finish the identity check against the fixed public
+  manifest, and record the fallback together with the first original error.
+- A corrected pre-check is an environment fix, not an experimental variable.
+  Keep the first failure and the fix next to the arm identity.
+
 ## Stage Scope of a Claim
 
 Accelerator collectives, component-level parity, and full request generation are
@@ -139,9 +168,12 @@ Read the public input contract before running, then classify each case.
 - An accelerator initialization or pinning error in a CPU-only regression is an
   environment setup failure, not a candidate regression; confirm it on the
   control before spending a run on it.
-- Check the interpreter that spawned workers actually use. A shell alias that is
-  not an executable on PATH can leave the child launch with an empty executable
-  and fail the test for a reason unrelated to the candidate.
+- Check the interpreter that spawned workers actually use. Describe the launch
+  path by the launcher's own conditions: a shell alias, function, or wrapper
+  that is not an executable on PATH can reach the child launch with no usable
+  executable, and an empty executable field is one manifestation rather than the
+  only one. Pass the interpreter path explicitly, keep it in the arm identity,
+  and confirm the vendor SDK imports on that interpreter.
 
 ## Public Sources
 

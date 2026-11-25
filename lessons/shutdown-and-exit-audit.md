@@ -49,6 +49,22 @@ own status line and the API reply are separate observations, not substitutes.
   process; that record is the authority. A worker's own status file, log line,
   or "exited cleanly" message is self-reported: keep it in a separate column and
   never use it as the exit code.
+- Persist each wait record in the process that actually obtains the child's OS
+  wait, after that wait has completed and before that reaper exits. Do not tie
+  the capture deadline to the launcher or container exit: a host supervisor that
+  takes over an orphan after the launcher exits first still obtains that rank's
+  wait and is the reaper that must persist the record. Once that reaper is gone
+  an unreaped record cannot be recovered, and the end-of-run markers a worker
+  left behind are supplementary evidence, not a late exit code.
+- A supervisor that re-adopts descendants, or a small reaper parent started
+  before the launcher, can retain wait records for ranks the launcher did not
+  reap. Decide this before launch, keep the parent alive through teardown, and
+  have the actual reaper persist each wait record after it completes that wait
+  and before it exits. Decide
+  `not retained` per rank from whether that rank's own OS wait record was
+  retained: a group record, a covered count, or a worker self-report does not
+  replace a rank whose record is missing. The value is still the reaping
+  parent's OS wait status, not a worker self-report.
 - A task-runner success state, a container exit status, an API reply, or the
   supervisor's own return value is not a rank exit code.
 - A manager killed by signal can take its children's records with it. When the
@@ -82,9 +98,11 @@ own status line and the API reply are separate observations, not substitutes.
 - Read the shutdown log for grace-period timeouts, `SIGTERM` counts, and
   force-kill lines. Keep the `atexit` or equivalent markers for the ranks whose
   numeric code was not captured, as supplementary evidence only.
-- When a manager is killed, say that the manager exited by signal and that the
-  child ranks do not have a reliable numeric code, instead of quietly reporting
-  the missing layer.
+- When a manager exits by signal, report the signal for the manager, then fill
+  each rank's row from that rank's own retained OS wait record. Do not infer
+  from the manager's signal that its child ranks have no reliable numeric code:
+  a supervisor or reaper parent can still hold their records, so write
+  `not retained` only for the ranks whose own record is missing.
 - Compare shutdown behavior across arms in the same environment before assigning
   the failure. Report a shared shutdown problem as a limitation of both arms.
 - Keep the claim scoped to the configuration observed. A single-stage smoke whose
@@ -95,9 +113,23 @@ own status line and the API reply are separate observations, not substitutes.
   performance table.
 - Keep the raw shutdown logs and the PID/exit audit with the private run
   evidence; publish only the summarized exit audit.
+- Judge clean exit and resource release separately: a cleanup step can remove
+  containers, free ports, and return devices to idle while a rank exited by
+  signal or has no record. Report both verdicts on separate lines, and never let
+  a successful resource release stand in for a clean exit.
 
 ## Public Sources
 
+- [vllm-project/vllm-omni#9467](https://github.com/vllm-project/vllm-omni/pull/9467):
+  its public deterministic request check is a generic single-stage 1 NFE
+  request: the two arms produced byte-identical outputs, while termination
+  emitted finalizer errors after the last successful request and native clean
+  shutdown was not established. A staged service's native shutdown remains
+  unverified in that material. The public page does not publish per-process exit
+  codes, so cite it only as a case where request success and a complete shutdown
+  are separate claims, not as a per-rank exit table. Public request inputs and
+  examples:
+  [cflin27/vllm-omni@9483ed9](https://github.com/cflin27/vllm-omni/tree/9483ed912963662b7a9d5220a0d200e2060c6761).
 - [cflin27 comment on vllm-project/vllm-omni#9494, 2026-10-28](https://github.com/vllm-project/vllm-omni/pull/9494#issuecomment-6459234160):
   eight-NPU A/B runs produced outputs but failed native worker teardown, with the
   underlying cause unproven; the comment therefore does not show a PR regression
