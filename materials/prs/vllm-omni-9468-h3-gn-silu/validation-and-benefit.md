@@ -5,10 +5,11 @@
 - Public PR: [vllm-project/vllm-omni#9468](https://github.com/vllm-project/vllm-omni/pull/9468)
 - Public base commit: `b7bbfbdb4f2b3c070d9632043ea6cd2b1c601270`
 - Candidate commit: `16c3a32b4ce083bf53df0c15b821276e2061dae7`
-- Result: exact paired outputs at 1 and 50 NFE for image and video conditioning,
-  small fused-path component saving at the earlier revision, **no target-device
-  (910B) run yet**. The device used for the final campaign is outside the 910B
-  family, so the fused operator was not installed or called there.
+- Result: exact paired outputs at 1 and 50 NFE for image and video conditioning
+  on the current candidate's eight-card fallback path, with zero fusion installs
+  or calls. An earlier Ascend910B4 component run measured a small fused-path
+  saving. Current-head 910B fusion and 910C / 910_93 real-device fallback are
+  deferred.
 
 ## Environment
 

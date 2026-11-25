@@ -46,10 +46,10 @@ No new configuration switches, dependencies, or recipe/benchmark changes.
 
 - CPU regression: **398 passed / 3 skipped** on the base, **413 passed / 3
   skipped** on the candidate (15 new tests).
-- Paired end-to-end precision on the device used for this campaign: original
-  MP4s **byte-identical** in all 12 measured pairs and all 4 warmup pairs, RGB24
-  and PCM maximum absolute difference **0**, per-frame RGB PSNR **∞**, and raw YUV
-  SSIM **1.000000** on the first measured pair per case.
+- On the eight-card fallback path, original MP4 SHA-256 hashes matched for all
+  12 measured pairs and all 4 warmup pairs. Decoded metrics were checked on the
+  first measured pair per case. The maximum absolute RGB24 and PCM differences
+  were 0, per-frame RGB PSNR was ∞, and raw YUV SSIM was 1.000000.
 - Fused-path component A/B (earlier revision): arrays **35/35 exact**, encoder
   wall time **0.875%** lower on six images and **0.635%** lower on video.
 - Device coverage: the campaign device is outside the 910B family, so the fused

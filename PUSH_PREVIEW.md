@@ -29,16 +29,19 @@ a device-name gate. It records:
 
 - the public base and candidate commits, the public model revision, and the
   public input/protocol artifact;
-- the install and eligibility design: 910B-family name check, callable vendor
-  symbol, image/video encode scopes, and the original forward for every other
-  device, scope, dtype, hook, training, parallel or compilation case;
+- the installation and call eligibility checks. The installer checks for a
+  callable vendor operator before querying the target device name. A rejected
+  installation preserves the checkpoint `forward` and install markers. After
+  installation, the bound private forward delegates ineligible calls to the
+  original `norm_silu`.
 - CPU regression on both arms, the per-device-class coverage table
   (`fallback verified` for the tested device, `not covered` for 910B and
   `910_93`/`910C`), and the rule that a fallback run is not a fast-path
   qualification;
-- paired end-to-end precision at 1 and 50 NFE for image and video conditioning,
-  with byte-identical original MP4s, RGB24/PCM maximum difference 0, per-frame
-  RGB PSNR infinity and raw YUV SSIM 1.000000;
+- paired end-to-end precision for image and video conditioning at 1 and 50 NFE.
+  Original MP4 hashes match for all 12 measured and 4 warmup pairs. The first
+  measured pair per case has RGB24 and PCM maximum difference 0, per-frame RGB
+  PSNR ∞, and raw YUV SSIM 1.000000.
 - the earlier-revision fused-path component A/B (0.875% / 0.635% encoder wall
   time, exact arrays), kept separate from end-to-end latency;
 - the end-to-end latency observations on the fallback device, including the

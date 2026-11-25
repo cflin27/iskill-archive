@@ -17,12 +17,11 @@ Public context:
 Keep the checkpoint implementation as the source of truth and install a private
 fast path in the encoder only:
 
-1. When the encoder is constructed, read the **target** device name through
-   `torch_npu.npu.get_device_name(device)` and accept only names that start with
-   `ascend910b`. Also require `torch_npu.npu_group_norm_silu` to be present and
-   callable. A missing interface, a raising query, an empty name or any other
-   family leaves the module untouched: the installer returns 0, sets no marker,
-   and binds no private `forward`.
+1. When the encoder is constructed, first require a callable
+   `torch_npu.npu_group_norm_silu` operator. Then query the target device with
+   `torch_npu.npu.get_device_name(device)` and require the normalized name to
+   start with `ascend910b`. If either check fails, the installer returns 0 and
+   preserves the checkpoint `forward` and install markers.
 2. On the accepted device, mark the encoder's GroupNorm instances as
    fusion-capable and bind per-instance `forward` methods whose globals resolve
    to the fused `norm_silu` while leaving the remote-code module globals and the
@@ -44,11 +43,11 @@ added.
 
 ```mermaid
 flowchart TD
-    enc[Encoder built with target device] --> gate{Device name starts with ascend910b?}
-    gate -- no --> original["Keep checkpoint forward and install markers as they were"]
-    gate -- yes --> sym{npu_group_norm_silu callable?}
-    sym -- no --> original
-    sym -- yes --> bind[Bind private forward, mark norms]
+    enc[Encoder built with target device] --> sym{npu_group_norm_silu callable?}
+    sym -- no --> original["Keep checkpoint forward and install markers as they were"]
+    sym -- yes --> gate{Target device name starts with ascend910b?}
+    gate -- no --> original
+    gate -- yes --> bind[Bind private forward, mark norms]
     bind --> call[Encode call]
     call --> elig{"Eligible scope, tensor, and execution state?"}
     elig -- no --> fallback["Bound private forward calls original norm_silu"]
