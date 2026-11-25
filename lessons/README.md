@@ -21,7 +21,15 @@ datasets.
   versus full-request versus offload residue, warmup export separation), native
   output alignment (frame-count alignment, decoded metrics versus container
   hashes, warmup-versus-formal differences), precision/determinism, measurement
-  layers, timing hygiene, and per-round promotion gates.
+  layers, timing hygiene, device time and retained capacity (per-card interval
+  union under stable anonymous card labels kept across groups, overlapping
+  requests counted once instead of adding group products, continuous occupancy
+  required across the whole interval rather than two holder samples, one
+  comparable clock for each start/end difference and for cross-arm merges with
+  wall clock kept as a separate audit column, the formal-request, reservation,
+  and launch-to-idle windows recorded as three start/end rows, preparation and
+  cleanup excluded, an unobserved first allocation left missing), and per-round
+  promotion gates.
 - [request-timeline-attribution.md](request-timeline-attribution.md):
   host interval decomposition with named owners, an explicit unattributed
   remainder and separate arithmetic closure error, per-arm clock verification,
@@ -43,6 +51,18 @@ datasets.
   rule covering one shared process or one resident process per arm that reports
   only the arm difference and run-position association, and
   the coverage ledger that keeps `not collected` distinct from zero.
+- [same-version-noise-baseline.md](same-version-noise-baseline.md): a
+  same-version control with its protocol scope kept attached (steps, input set,
+  CPU affinity, diagnostics), per-start samples with the request, pair, and block
+  counts and the between-start mean difference, named percentage denominators
+  with version-order and run-order rows kept side by side, the absolute envelope
+  and absolute difference used to judge resolution while the signed range checks
+  direction, `not applicable` for a gate whose fast path was not hit (install
+  counts, per-scope call counts, and a missing count kept apart) and
+  `undetermined` when the path was hit but the same protocol's band covers the
+  delta, the A/A magnitude as this measurement's resolution limit with stopping
+  set by the pre-agreed rule, and the exit and resource boundary kept separate
+  from the timing entry.
 - [validation-evidence-discipline.md](validation-evidence-discipline.md):
   execution and checkpoint identity including the worker interpreter and the
   resolved import paths, a per-claim coverage ledger (process exits, resolved

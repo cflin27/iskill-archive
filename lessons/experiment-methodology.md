@@ -216,6 +216,126 @@ device probes, and failure triage, see
 - Percentiles from a handful of samples are interpolations of the same data, not
   stable tail estimates. Use them to screen, not to settle a marginal gate.
 
+## Same-Version Noise Baseline
+
+- A same-version control measures what a protocol produces with the code held
+  fixed. Keep the entry's protocol scope (generation steps, input set, CPU
+  affinity, attached diagnostics) attached, and take a new control when the
+  protocol changes instead of importing the old band.
+- Name every percentage's denominator, and keep version-order and run-order
+  percentages side by side. A magnitude envelope is not a signed range, so a
+  smaller historical difference does not mean the same direction reproduced.
+- Keep the two no-verdict outcomes apart. Write `not applicable` only when the
+  run did not hit the gated fast path; write `undetermined` when the path was hit
+  but the delta is inside the same protocol's band, so the protocol cannot
+  resolve the effect. Neither is a pass or a fail, and neither supports a speed
+  claim. Support a miss with the evidence kind it actually has: an install count
+  of `0` is a registration fact, a measured `0` call count covers only the scope
+  and request shape observed, and a call count never collected stays
+  `not measured` instead of becoming a zero or a miss.
+- The measured A/A magnitude describes this measurement's resolution limit only.
+  Stop sampling when the rule agreed before the run is met, record that rule and
+  its trigger, and change the measurement rather than adding runs that cannot
+  resolve the effect. See
+  [same-version-noise-baseline.md](same-version-noise-baseline.md).
+
+## Device Time and Retained Capacity
+
+- A device-time figure means nothing without its window, its clock, and its
+  device count. Three common figures measure different things and cannot
+  replace one another:
+  - a lower bound of retained capacity — the device time actually held by
+    completed formal requests. Identify each physical card with an anonymous
+    but stable label that stays fixed across the groups being merged, for
+    example an ordinal from one retained host enumeration. Take the union of
+    the evidenced intervals card by card, sum the per-card seconds, and divide
+    by 3600 for card hours. Count an overlap once on the shared card instead of
+    adding group products. It is a floor over completed formal requests with
+    occupancy evidence, not a claim that every device core was busy throughout
+    the run;
+  - a reservation window — from the acknowledgement that the devices are
+    assigned after warmup to the return of the last formal request. It may
+    include gaps between requests. Compare it with the floor only under the
+    containment and device-set rule below;
+  - a launch-to-idle window — from this arm's launch to the check that every
+    card this arm used is idle again. It includes CPU setup, probing, load,
+    warmup, and cleanup, so it bounds device context from outside instead of
+    measuring device busy time.
+- Recompute the floor from per-card rows before reporting it: the card label,
+  each interval's start and end, the clock domain, the evidence reference, and
+  the union length per card, plus the device set, the summed product, and what
+  the figure excludes. A per-group product is a shortcut only when every merged
+  interval has the same device membership and no card is shared with a group
+  whose interval overlaps; state that condition when using it. Otherwise the
+  group product double-counts a shared card, and merging the time before
+  multiplying by the union of the members counts a card that was not held for
+  the merged span. Two groups, `{A,B} × [0,10)` and `{B,C} × [5,15)` in
+  seconds, hold A for 10, B for 15, and C for 10 — 35 card-seconds; adding the
+  group products gives 40 and the merged-time product gives 45, so both
+  shortcuts are wrong here.
+- An interval enters the floor only when occupancy of the card is evidenced
+  across the whole interval, by an exclusive lease that covers it, a gap-free
+  allocation and release event record, or evidence of equal strength that
+  excludes a release or transfer inside it. Request start and end records
+  bracketed by two holder records are two sample points, not continuous
+  holding: the same holder can release and reacquire the card between them, and
+  finite-rate sampling proves only its sample points. A report that took its
+  holding from discrete checkpoints keeps that coverage limit when its formal
+  request intervals are used. An interval with a gap in the evidence, or whose
+  holding is only assumed, stays out of the floor and is listed as excluded or
+  `not measured`; it does not become a zero. Failed preparation rounds,
+  CPU-only regression, probes, model load, warmup, and cleanup do not belong in
+  the formal floor either; list them as excluded instead of dropping them
+  silently.
+- Derive each interval's length from its start and end on the same comparable
+  clock, and compute the window the same way. Do not subtract a wall-clock end
+  from a monotonic start, mix clocks across hosts or arms, or rebuild a
+  duration from endpoints that belong to different domains; if only such
+  endpoints exist, report the duration as unavailable instead of
+  reconstructing it.
+- Merge a shared card's intervals on one comparable timeline. With a verified
+  mapping and bounded endpoint error, count only the guaranteed inner interval
+  from the latest possible start to the earliest possible end. If the end is
+  at or before the start, the mapping establishes no positive span to count.
+  Retain the original endpoints, mapped endpoints, and error bounds. For
+  example, a nominal mapped interval of `[5,15)` with an offset error of ±1 s
+  contributes `[6,14)`. Its union with a known `[0,10)` is 14 s of guaranteed
+  coverage.
+- Per-arm monotonic durations that each start at zero can be computed separately.
+  Sum those durations for a shared card only if independent evidence proves
+  the relevant intervals were disjoint, for example a recorded release before
+  reacquisition. Launch order alone is audit information and overlap remains
+  possible. If neither a verified mapping nor proof of disjointness supports
+  the merge, mark the cross-domain union duration `unavailable`. Keep the
+  per-domain records and state the coverage of any partial floor reported.
+- Report wall-clock timestamps separately as audit time, for correlating with
+  external schedules or other systems' records, and keep them out of the
+  retained-capacity arithmetic.
+- Record each arm's windows in the table with the event and timestamp at each
+  endpoint, the clock domain for each endpoint, and the device set. Keep the
+  per-card interval records for the formal-request row and the per-card idle
+  checks for the launch-to-idle row.
+
+  | Window | Start event and timestamp | End event and timestamp | Clock domains (start / end) | Device set | Duration or status |
+  | --- | --- | --- | --- | --- | --- |
+  | Formal-request lower bound | Start of each formal interval with verified holding | End of each such interval | | | |
+  | Reservation | Post-warmup ownership acknowledgement | Last formal request returns | | | |
+  | Launch-to-idle | This arm launches | Idle verification has completed for every card used by this arm | | | |
+  | Audit boundaries | First verified hold per card | Confirmed release per card | | | Audit only |
+
+  Mark a window `unavailable` if a required endpoint is missing or its
+  endpoints cannot be compared. Retain any verified partial coverage and its
+  scope. Use the first verified hold and confirmed release only as audit
+  boundaries. Record a missing actual allocation timestamp as missing.
+- Compare reservation card-hours with the formal lower bound only when the
+  reservation window is proven on a comparable timeline to fully contain every
+  formal-request interval counted in the floor and both cover the same device
+  set. With both conditions met, reservation card-hours equal the floor or
+  exceed it if the reservation covers additional time. If either condition
+  fails or is unknown, report that coverage verdict alongside the figures.
+- A lower bound is a floor: do not quote it as total usage, as the cost of the
+  change, or as evidence that the devices saturated.
+
 ## Promotion Gates
 
 - Apply the regression gate per round and per metric, not only to the arithmetic

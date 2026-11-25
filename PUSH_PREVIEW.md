@@ -1,11 +1,73 @@
 # Push Preview: iskill-archive Content
 
 This update builds on the experiment, device, and exit-audit lessons. It adds
-guidance on request-timeline attribution and an explicit coverage ledger, and
-documents the screening evidence for timing an optional fast path and the
-evidence needed to report device occupancy.
+guidance on same-version noise baselines, request-timeline attribution, and
+device-time accounting, and documents the screening evidence for timing an
+optional fast path and the evidence needed to report device occupancy.
 
-## Current Update: Request Timeline Attribution and Coverage Ledger
+## Current Update: Same-Version Noise Baselines
+
+Adds one lesson and updates three documents, four files in total. The lesson is
+distilled from a same-version control run whose evidence is not published yet.
+The related public context is
+[vllm-project/vllm-omni#9468](https://github.com/vllm-project/vllm-omni/pull/9468).
+Two public artifacts are cited separately and are not interchangeable. The
+shared Ref2VA input and request protocol for this batch of runs comes from
+[cflin27/vllm-omni@9483ed9](https://github.com/cflin27/vllm-omni/tree/9483ed912963662b7a9d5220a0d200e2060c6761),
+and the comparison records already in that commit tree were built for #9467 and
+#9494. The historical Ascend910B4 component measurements come from the public
+reproduction bundle
+[cflin27/vllm-omni@4a4017db](https://github.com/cflin27/vllm-omni/tree/4a4017db17710f2ce297d5b7f4ca640c3b44e0b4)
+that the #9468 PR body links, whose `pr9468-native/` subdirectory holds a single
+public image-condition 1 NFE precision case. Neither artifact supplies a noise
+reference for the other's scope, and no case-specific numbers, hosts, logs,
+paths, or device assignments are included.
+
+- `lessons/same-version-noise-baseline.md` (new): the protocol scope an entry
+  describes and must keep attached when reused — a single-step (1 NFE) image
+  run without CPU affinity binding stays scoped to that protocol and does not
+  calibrate a 50 NFE workload, fused-operator timing, stage-only component
+  measurement, or a protocol carrying stage synchronization or profiling;
+  independent service starts kept separate, with the formal request count, the
+  pair count, and the block count reported so a pooled standard deviation's `N`
+  is not read as a pair count, and only the between-start mean difference
+  compared across starts; named percentage denominators with version-order and
+  run-order percentages side by side; the absolute difference at the same level
+  and that level's absolute envelope used to judge resolution, the signed range
+  used to check direction, and block means and single pairs each read against
+  their own range, so comparable magnitude is not read as a reproduced
+  run-position effect or as code causality, while the candidate effect stays
+  indistinguishable from the protocol's own drift; `not applicable` only when
+  the run did not hit the gated fast path, with an install count of `0`, a
+  measured zero call count in the request scope, and a count never collected
+  kept apart, and `undetermined` when it was hit but the same protocol's band
+  covers the delta; the A/A magnitude as this measurement's resolution limit,
+  with sampling stopped on the rule agreed before the run; and the separate exit
+  and resource boundary — per-process records from the actual reaper, a negative
+  value read as a signal only on interfaces that encode signals as negative
+  return codes (a Python `subprocess` return code or
+  `os.waitstatus_to_exitcode()`), while `WIFSIGNALED(status)` only tests signal
+  termination and `WTERMSIG(status)` returns the positive signal number,
+  coverage as a fraction with `not retained` rows left unfilled, and resource
+  release as a verdict separate from clean exit.
+- `lessons/experiment-methodology.md`: adds the same-version noise baseline
+  method and points to the new lesson, plus a device-time and retained-capacity
+  rule that unions evidenced formal-request intervals card by card under
+  anonymous stable card labels, sums the per-card seconds into card hours,
+  forbids adding group products when groups share a card or merging time before
+  sizing the device set, requires holding evidence that covers the whole
+  interval instead of two endpoint samples, and counts only the guaranteed
+  inner interval when a verified clock mapping has bounded error. Launch order
+  alone leaves overlap possible. The window table records each window's own
+  endpoints and clock domains, marks windows with missing endpoints unavailable,
+  and keeps first verified hold and confirmed release as audit boundaries.
+  Comparing reservation card-hours with the formal lower bound requires full
+  interval containment and the same device set. The floor excludes preparation
+  and cleanup.
+- `lessons/README.md`: index updated.
+- `PUSH_PREVIEW.md`: preview section updated for this four-file update.
+
+## Previous Update: Request Timeline Attribution and Coverage Ledger
 
 Adds one lesson and updates seven documents, eight files in total. The lesson is
 distilled from an internal validation round whose evidence is not public yet.
