@@ -35,6 +35,19 @@ Record, for each tested device group:
 Keep the raw query output, the install counters, and the call counters with the
 private run evidence; publish only the summarized table.
 
+## Confirm the Hit Before Timing
+
+In screening, collect the candidate's actual call count for each timed scope
+using the request shape and routing configuration planned for formal timing.
+An install count records registration. A positive call count establishes
+execution only for the scope and shape observed. If a required count was
+not collected, obtain it before promoting that scope to formal timing.
+
+A confirmed zero makes the fast-path performance gate not applicable for that
+scope. End fast-path attribution there and retain any timings as observations
+of the tested path. Record timing applicability alongside the capability
+verdict.
+
 ## Zero Fast-Path Activity Proves Routing, Not the Fallback
 
 An install count of `0` and zero fast-path calls show only that the gate did not
@@ -73,6 +86,13 @@ Do not summarize that result as "fusion validated", "the optimization works",
 or under the target device's name. Once parity and the side-effect check are in
 place, the fallback result is the regression-safety evidence for the devices
 tested, and it should be reported as such rather than discarded.
+
+Close an excluded-device row when its gate is false, installs and calls are
+confirmed zero in the covered scopes, baseline parity passes, and the
+side-effect check is clean. Use a representative smoke request for each
+covered shape. The completed fallback row requires no further performance
+blocks. Revisit it when the candidate, routing configuration, or relevant
+coverage evidence changes.
 
 ## Do Not Bridge Device Families
 

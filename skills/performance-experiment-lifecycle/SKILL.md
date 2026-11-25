@@ -43,6 +43,11 @@ Use agile screening to reject weak ideas quickly.
 - Keep baseline and candidate symmetric except for the tested variable.
 - Check correctness at the same level as the screened stage: tensor, media,
   parser output, API response, or another domain-appropriate artifact.
+- Screen optional fast paths by counting actual candidate calls for each
+  scope on the workload shape and configuration planned for timing. Require a
+  confirmed hit to promote the scope to paired timing with its baseline. A
+  confirmed zero makes the fast-path performance gate not applicable. A
+  missing count requires evidence before promotion.
 - Prefer paired A/B runs over isolated absolute timings.
 - Stop early when correctness fails, timing moves the wrong way, or evidence is
   too noisy to justify promotion.

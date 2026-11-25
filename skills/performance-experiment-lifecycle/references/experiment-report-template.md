@@ -110,8 +110,13 @@ row per device class: the intended device and each excluded device family.
 `not covered` means no run on that device; a row that ran but still lacks parity
 or the side-effect check stays `fallback selected`.
 
-| Device (raw query) | Gate | Installs | Fast-path calls by scope | Parity vs baseline | Install side effects | Verdict |
-| --- | --- | ---: | --- | --- | --- | --- |
+| Device (raw query) | Gate | Installs | Calls by scope and request shape | Parity vs baseline | Install side effects | Verdict | Timing applicability |
+| --- | --- | ---: | --- | --- | --- | --- | --- |
+
+Before formal timing, record the actual candidate call count for each timed
+scope and request shape. Record `not collected` when the counter is missing.
+For confirmed zero calls, mark the fast-path performance gate `not applicable`.
+A verified fallback row completes its smoke checks without a performance block.
 
 ## Media Output Contract
 
@@ -178,6 +183,16 @@ count does not recover a rank whose record is missing. Quote the shutdown
 warning with its count next to this table, and reconcile the count against the
 `not retained` rows as a separate check; a matching count does not recover a
 missing code.
+
+## Device Occupancy
+
+| Device group | First confirmed task ownership (time and evidence) | Confirmed release (time and evidence) | Unfinished blocks and stop reasons | Proven occupancy duration |
+| --- | --- | --- | --- | --- |
+| | | | | |
+
+Use a lower bound from an interval with evidence of continuous ownership.
+Write `unknown` when the evidence cannot establish such an interval. Retain
+the process exit table independently.
 
 ## Limits
 
