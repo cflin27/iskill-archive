@@ -20,6 +20,18 @@ This seven-file update adds general validation guidance.
   adds timing applicability and a per-group occupancy table.
 - `PUSH_PREVIEW.md` records this update.
 
+## vLLM-Omni #9494 precision GIFs
+
+Adds three synchronized 50 NFE comparisons for
+[vllm-project/vllm-omni#9494](https://github.com/vllm-project/vllm-omni/pull/9494).
+Each shows the baseline on the left and the candidate on the right, using the
+same public input, seed, and parameters. The GIFs are silent presentation
+encodes. The PR reports precision from the original outputs.
+
+- [Six images](materials/prs/vllm-omni-9494-h3-vae-encoder-staging/assets/pr9494-images-50nfe-baseline-candidate.gif)
+- [Video with an audio track](materials/prs/vllm-omni-9494-h3-vae-encoder-staging/assets/pr9494-video-50nfe-baseline-candidate.gif)
+- [One frame with extracted audio](materials/prs/vllm-omni-9494-h3-vae-encoder-staging/assets/pr9494-audio-50nfe-baseline-candidate.gif)
+
 ## vLLM-Omni #9468 GroupNorm + SiLU archive
 
 Adds `materials/prs/vllm-omni-9468-h3-gn-silu/`, a public-safe archive for
