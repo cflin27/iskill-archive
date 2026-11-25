@@ -134,6 +134,40 @@ conditioning array proves that stage only.
   a passing collective does not prove the service starts, serves, and shuts
   down.
 
+## Coverage Ledger
+
+A passing check covers the units it actually observed. Record the denominator
+and the covered subset for every claim, not only the failures:
+
+- Process exits: how many of the run's processes have an independent OS wait
+  record, which groups have none, and whether the API or supervisor returned
+  `0` (scoped to itself). See
+  [shutdown-and-exit-audit.md](shutdown-and-exit-audit.md).
+- Import identity: which processes resolved the intended source tree and Python
+  interpreter, and whether any worker's `__file__` was never exported. A
+  collector's own hash evidence does not cover the workers it did not inspect.
+- Counters and hooks: which counters existed in this run. An absent counter is
+  `not collected`, not zero, and an earlier run's hook output cannot supply this
+  run's zero-call count.
+- Request reconciliation: client, server, and engine identifiers per request,
+  one terminal state each, and the number of dropped events.
+- Device occupancy: which compared cards had a host process-to-card snapshot
+  taken during the first public request or at a named sync point inside the
+  measured window, whether each holder's card and container device node were
+  reconciled against the granted set and its PID and start time against this
+  arm's process identity, whether any outside holder appeared, and which
+  intervals are covered only by before-launch and after-cleanup endpoint checks.
+  A window without a synchronized snapshot, either reconciliation, or a
+  confirmed PID mapping leaves the affected row at attribution undetermined; it
+  neither clears nor convicts the candidate. Two snapshots cover only their
+  sample points, so a short-lived process between them can be missed.
+
+Publish the ledger beside the passing table. "All processes exited cleanly" is
+false when only a subset has a record, and "zero fast-path calls" is unproven
+when no count was collected in the run. Do not fill a gap with a value inferred
+from the code path, and do not let a coverage gap clear or condemn the
+candidate: it limits the claim.
+
 ## Request Contracts Before Calling a Failure
 
 Read the public input contract before running, then classify each case.

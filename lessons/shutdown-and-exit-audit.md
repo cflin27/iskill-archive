@@ -76,6 +76,11 @@ own status line and the API reply are separate observations, not substitutes.
   acceptance line to that table, for example "two rank groups returned 0; the
   manager of one stage exited by signal; that stage's ranks are `not retained`;
   therefore not all ranks can be claimed to have exited cleanly".
+- State coverage as a fraction with group names: how many of the run's processes
+  have an independent OS record, and which stage's ranks and managers do not. A
+  successful API exit plus a few manager records does not describe the remaining
+  processes; list those groups as `not retained` and keep the aggregate claim
+  scoped to the rows that exist.
 - Quote the shutdown warning verbatim with its count, for example
   `workers still running after grace period; sending SIGTERM count=<n>`. Do not
   paraphrase it into "shutdown timed out".

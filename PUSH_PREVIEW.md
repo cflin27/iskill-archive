@@ -1,9 +1,82 @@
 # Push Preview: iskill-archive Content
 
-This update documents the screening evidence for timing an optional fast
-path and the evidence needed to report device occupancy.
+This update builds on the experiment, device, and exit-audit lessons. It adds
+guidance on request-timeline attribution and an explicit coverage ledger, and
+documents the screening evidence for timing an optional fast path and the
+evidence needed to report device occupancy.
 
-## Current Update — Fast-Path Screening and Device Occupancy
+## Current Update: Request Timeline Attribution and Coverage Ledger
+
+Adds one lesson and updates seven documents, eight files in total. The lesson is
+distilled from an internal validation round whose evidence is not public yet.
+The related public source is
+[vllm-project/vllm-omni#9468](https://github.com/vllm-project/vllm-omni/pull/9468),
+an eight-card Ascend A/B; it is related context, not the source of this update,
+and no case-specific numbers, hosts, logs, or device assignments are included.
+The #9468-specific public reproduction bundle is
+[cflin27/vllm-omni@4a4017db](https://github.com/cflin27/vllm-omni/tree/4a4017db17710f2ce297d5b7f4ca640c3b44e0b4),
+listed in that PR body: its `pr9468-native/` case covers public image-condition
+1 NFE precision, and it supplies no request-timeline or packaging measurement.
+The shared public Ref2VA material is
+[cflin27/vllm-omni@9483ed9](https://github.com/cflin27/vllm-omni/tree/9483ed912963662b7a9d5220a0d200e2060c6761);
+its request examples were built for #9467 and #9494, so it traces common inputs
+only and is not a #9468 case source.
+
+- `lessons/request-timeline-attribution.md` (new): the process and device
+  ownership prerequisite anchored at the first public request or a named sync
+  point inside the window — a host process-to-card snapshot reconciled on two
+  axes, the card and container device node against the grant and the holder PID
+  with start time against this arm's process identity, with the checkpoint
+  marker and role retained, the before-launch grant and after-cleanup check as
+  endpoints only, a short-lived process between the two sample points still a
+  coverage limit, and attribution undetermined when either reconciliation, the
+  mapping, or an outside holder leaves the window unconfirmed — host interval
+  decomposition with named owners, per-arm clock verification, an explicit
+  unattributed remainder with a separate arithmetic closure error, equal numbers
+  of AB and BA order blocks reported separately, the attribution rule (a
+  candidate-owned excess with the same direction under reversal supports a
+  targeted follow-up; a causal conclusion needs a control that isolates the code
+  difference; an order-flipped packaging or API-preparation excess is written as
+  attribution undetermined), per-arm pre-packaging RGB24/PCM hashes taken before
+  the shared encoding step with a fixed encoding configuration, a saved
+  read-only raw-byte payload that both replay arms read and independently
+  re-hash against the saved payload hash (matching each other alone is not
+  enough; the hash verifies the shared payload and does not replace it),
+  controlled replay of the suspect interval with a fixed thread and CPU
+  configuration and equal numbers of AB and BA interleaved units recorded by
+  order, a fixed-process rule covering both one shared process and one resident
+  process per arm that reports only the arm difference and run-position
+  association, non-reproduction scoped to the replay conditions, and the
+  coverage ledger.
+- `lessons/experiment-methodology.md`: adds the request timeline attribution
+  method and points to the new lesson.
+- `lessons/validation-evidence-discipline.md`: adds the coverage ledger (process
+  exits, resolved import paths, counters present in the run, request
+  reconciliation) and the rule that `not collected` is not zero.
+- `lessons/shutdown-and-exit-audit.md`: adds covered-versus-total process
+  coverage with the uncovered groups named.
+- `lessons/README.md`: index updated.
+- `skills/performance-experiment-lifecycle/SKILL.md`: timeline collection in
+  formal timing, two-axis ownership reconciliation at the sync point, request
+  timeline and closure tables, equal numbers of AB and BA blocks reported
+  separately by order, the attribution rule, and the fixed-process limit.
+- `skills/performance-experiment-lifecycle/references/experiment-report-template.md`:
+  a process-to-card reconciliation table with a holder-identity column, an
+  attribution verdict per failing row that selects attribution undetermined for
+  an order-flipped packaging or API-preparation delta, the controlled replay
+  record with per-arm pre-packaging media hashes and a saved read-only raw-byte
+  payload whose per-arm read-back hashes are checked against the saved payload
+  hash, equal AB and BA replay units recorded by order, the fixed-process rule
+  covering both one shared process and one resident process per arm (only the
+  signed arm difference and its run-position association in the `Notes` column
+  are reported; per-arm means and ranges stay blank for those rows), a two-arm
+  statistics requirement and cross-block summary scoped to blocks that start a
+  new independent process for each arm, a fixed encoding configuration,
+  pre-packaging media hashes in the media output contract, and a coverage-ledger
+  limit.
+- `PUSH_PREVIEW.md`: preview section updated for this eight-file update.
+
+## Previous Update: Fast-Path Screening and Device Occupancy
 
 This seven-file update adds general validation guidance.
 

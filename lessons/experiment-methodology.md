@@ -61,6 +61,61 @@ device probes, and failure triage, see
   original cell did not reproduce under that order; it does not show the
   candidate is faster, and it does not resolve what produced the original cell.
 
+## Request Timeline Attribution
+
+- When a per-request gate fails while the engine's stage timers are flat,
+  decompose the request wall time into mutually exclusive host intervals with
+  named owners, keep an explicit unattributed remainder, and report the
+  arithmetic closure error separately. Closure proves the bookkeeping, not the
+  completeness of the explanation.
+- Run an equal number of blocks in each arm order, AB and BA, so each arm runs
+  first and second equally often. Report the two orders separately with their
+  own counts, means, and ranges; do not pool them into one mean. An excess inside
+  candidate-owned intervals with the same direction under order reversal supports
+  a targeted follow-up, not a causal conclusion; a causal conclusion needs a
+  control that isolates the code difference. When the excess lies in packaging or
+  API preparation intervals and flips with arm order, write attribution
+  undetermined, name the intervals that carried it, and keep the original
+  failing row.
+- Reconcile cards and processes at a sync point inside the measured window: take
+  the host process-to-card snapshot during the first public request, or at a
+  named barrier between the request and its packaging, and retain the checkpoint
+  marker with each holder's PID, start time, and role in the private record.
+  Reconcile the card and container device node against the grant, and the holder
+  PID and start time against this arm's process identity; a matching card number
+  alone does not exclude an outside holder. The before-launch grant and the
+  after-cleanup check are endpoints only and do not replace that in-window
+  evidence; record the grant only as the set the reconciliation is checked
+  against. Two snapshots prove only their sample points, so a short-lived process
+  between them may still be missed. If the in-request checkpoint, a reconciliation
+  axis, or the PID mapping cannot be confirmed, or a snapshot shows an outside
+  holder, record attribution undetermined for the affected row instead of
+  assigning the excess to an arm.
+- Replace a full matrix rerun with a controlled replay of the suspect interval:
+  same public input bytes, fixed thread and CPU configuration, fixed encoding or
+  muxing configuration, an equal number of AB and BA interleaved units recorded
+  separately by order, and packaging inside the measured span. Collect each
+  arm's pre-packaging RGB24/PCM hash per request before the shared encoding and
+  packaging step, require the two arms' hashes to match, then save the verified
+  raw bytes once as a single read-only payload, hand that byte payload to both
+  arms, and have each arm independently re-hash what it read and match its
+  read-back hash against the payload hash recorded when it was saved; matching
+  the two arms only with each other would accept a shared wrong payload. The
+  hash verifies the shared payload rather than replacing it. A fixed A-then-B
+  repetition is
+  still AB and moves the version together with the run position. When the process
+  is held fixed — one process serving both arms, or each arm bound to its own
+  resident process — report only the arm-to-arm difference and its association
+  with run position, not absolute per-arm timings. Split the suspect path into
+  finer mutually exclusive markers only where the replay needs it, and do not
+  average the replay with the original samples. If the excess does not reproduce,
+  limit the statement to those replay conditions.
+- Keep the coverage ledger next to the result: which processes have an
+  independent OS exit record, which workers exported their resolved import path,
+  which cards had a process-to-card snapshot inside the measured window, and
+  which counters existed in this run. `not collected` is not zero.
+- See [request-timeline-attribution.md](request-timeline-attribution.md).
+
 ## Component-Level A/B
 
 - Run the component comparison in both execution orders and report the blocks

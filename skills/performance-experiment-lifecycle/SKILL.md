@@ -72,6 +72,30 @@ Promote only one selected candidate to formal timing.
   rounds. Report pooled-sample statistics separately from per-round statistics.
 - For distributed stages, state the aggregation rule before averaging, such as
   per-request maximum across ranks.
+- When a per-request gate fails while engine-stage timers are flat, collect a
+  request timeline instead of rerunning the matrix. Anchor ownership first: take
+  a host process-to-card snapshot during the first public request or at a named
+  sync point inside the window, retain the checkpoint marker and each holder's
+  PID, start time, and role in the private record, and reconcile on two axes:
+  the card and container device node against the grant, and the holder PID and
+  start time against this arm's process identity. A matching card number alone
+  does not exclude an outside holder. The before-launch grant and the
+  after-cleanup check are endpoints only and do not replace that in-window
+  evidence; two snapshots cover only their sample points, so a short-lived
+  process between them may still be missed. When no in-request checkpoint can be
+  synchronized, either reconciliation lacks evidence, or a snapshot shows a
+  holder outside this arm's process identity, the affected row is attribution
+  undetermined, not assignable to an arm. Then
+  decompose the request into mutually exclusive host intervals with named
+  owners, an explicit unattributed remainder, and the arithmetic closure error
+  reported separately. Run an equal number of blocks in each arm order, AB and
+  BA, and report them separately by order. An excess inside
+  candidate-owned intervals with the
+  same direction under reversal supports a targeted follow-up, not a causal
+  conclusion; a causal conclusion needs a control that isolates the code
+  difference. A packaging or API-preparation excess that flips with arm order is
+  reported as attribution undetermined, not as a source regression or a
+  clearance.
 - For every allocator or memory peak, state the collection boundary per runner
   (where it resets, whether a nested library reset inside the window, where it
   reads), which execution branches it covers, how per-request values are
@@ -125,6 +149,16 @@ State whether parity evidence came from warmup exports or from the formal
 outputs. Warmup-exported arrays cannot certify the formal requests. When both
 arms show the same warmup-versus-formal difference, report it as a shared
 observation with an unknown cause rather than a candidate regression.
+
+When a gate failed, include the request interval table with the unattributed
+remainder, closure error, and an attribution verdict per failing row:
+`candidate-owned interval, follow-up supported`, `order-confounded or shared`,
+`attribution undetermined` (name the intervals that carried the excess), or
+`unresolved`. No verdict clears the candidate or closes the gate. Include the
+coverage ledger beside
+the passing table: processes with an independent OS exit record out of the run's
+total, workers whose resolved import path was exported, and counters present in
+this run. `not collected` is not zero.
 
 ## Method References
 

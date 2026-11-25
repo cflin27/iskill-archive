@@ -22,10 +22,32 @@ datasets.
   output alignment (frame-count alignment, decoded metrics versus container
   hashes, warmup-versus-formal differences), precision/determinism, measurement
   layers, timing hygiene, and per-round promotion gates.
+- [request-timeline-attribution.md](request-timeline-attribution.md):
+  host interval decomposition with named owners, an explicit unattributed
+  remainder and separate arithmetic closure error, per-arm clock verification,
+  a first-public-request or sync-point host process-to-card snapshot with the
+  checkpoint marker and holder PID, start-time, and role retained, card and
+  device node reconciled against the grant and holder PID with start time against
+  this arm's process identity (the before-launch grant and after-cleanup check
+  are endpoints only, and two snapshots cover only their sample points),
+  attribution undetermined when either reconciliation or an outside holder leaves
+  the window unconfirmed, equal numbers of AB and BA
+  blocks reported separately by order,
+  per-arm pre-packaging RGB24/PCM hashes with a fixed encoding configuration and
+  a saved read-only raw-byte payload for replays whose per-arm read-back hashes
+  are each checked against the saved payload hash, the rule that a candidate-owned
+  excess whose direction holds under reversal only supports a targeted follow-up
+  and that a causal conclusion needs a control isolating the code difference, an
+  order-flipped excess written as attribution undetermined, controlled replay of
+  the suspect interval with equal AB/BA interleaved units and a fixed-process
+  rule covering one shared process or one resident process per arm that reports
+  only the arm difference and run-position association, and
+  the coverage ledger that keeps `not collected` distinct from zero.
 - [validation-evidence-discipline.md](validation-evidence-discipline.md):
   execution and checkpoint identity including the worker interpreter and the
-  resolved import paths, device probe ladder, runtime parameter ranges,
-  non-reproduction
+  resolved import paths, a per-claim coverage ledger (process exits, resolved
+  imports, counters present in the run), device probe ladder, runtime parameter
+  ranges, non-reproduction
   versus a fix, candidate failure triage, read-only source with a writable work
   directory, container input accessibility (host symlinks, input copies, offline
   manifest check), stage scope of a claim, request contracts, whole-repository
@@ -39,11 +61,11 @@ datasets.
   per-rank OS exit capture from the wait record persisted by the process that
   actually obtains that OS wait, after the wait completes and before that reaper
   exits, including a host supervisor that takes over when the launcher exits
-  first, worker self-reports kept separate, `not retained`
-  rows, signal exits, grace-period force-kill with its warning count checked
-  independently of missing codes, control comparison, resource release as a
-  verdict separate from clean exit, and how to report a
-  shutdown gap next to passing request results.
+  first, worker self-reports kept separate, `not retained` rows,
+  covered-versus-total process coverage, signal exits, grace-period force-kill
+  with its warning count checked independently of missing codes, control
+  comparison, resource release as a verdict separate from clean exit, and how to
+  report a shutdown gap next to passing request results.
 - [device-numbering-and-ownership.md](device-numbering-and-ownership.md): device
   access authorization as a pre-probe gate (device node presentation and
   mapping, devices cgroup or permission policy, failed pre-check when the
