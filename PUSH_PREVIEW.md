@@ -1,10 +1,57 @@
 # Push Preview: iskill-archive Content
 
-This update adds the public archive and one evidence lesson for a streamed
-reference-video input stage in `vllm-project/vllm-omni`, revised after an
-independent review of the PR body, archive and comparison video.
+This update adds the public archive, the selected formal evidence records and one
+evidence lesson for a cross-clip video-VAE tile-balance scheduler in
+`vllm-project/vllm-omni`.
 
-## Current Update: MiniMax-H3 Streamed Reference-Video Tile Archive
+## Current Update: MiniMax-H3 Cross-Clip Video VAE Tile Balance Archive
+
+Adds a public PR archive, the selected formal evidence records and one lesson.
+No private hosts, paths, logs, checkpoints, media, or internal case names are
+included.
+
+- `materials/prs/vllm-omni-10167-h3-vae-tile-balance/` (new): public archive for
+  [vllm-project/vllm-omni#10167](https://github.com/vllm-project/vllm-omni/pull/10167),
+  an opt-in scheduler that distributes complete reference-video clip/tile tasks
+  across the video-VAE parallel ranks. Covers the design and fallback matrix,
+  the eight-rank native Stage0 hit, the public Ref2VA precision comparison, the
+  formal VAE stage gate, the 50 NFE end-to-end guard, the lifecycle evidence,
+  public input sources and the stated limits (allocator peak versus device HBM,
+  stage-only speedup with a zero-crossing end-to-end interval, warmup-versus-
+  formal observation, unverified complete checkpoint revision, one-host scope).
+- `materials/prs/vllm-omni-10167-h3-vae-tile-balance/evidence/pr10167/` (new):
+  selected machine-readable results — per-request statistics, per-pair
+  precision, latent comparisons, input manifest and identity records — with the
+  source archive checksum and per-file `SHA256SUMS`. The run's internal
+  execution records are not included.
+- `materials/prs/vllm-omni-10167-h3-vae-tile-balance/assets/` (new): the
+  synchronized left-baseline/right-candidate Ref2VA GIF (124 frames, 672×192),
+  its metadata, checksums and the FFmpeg transcode command.
+- `lessons/staged-native-execution-evidence.md` (new): the first native operator
+  call as its own rung, signature-preserving instrumentation, a second stage
+  that exits by signal on a clean shutdown, measurement hooks as part of the
+  guard, peak scope as part of the claim, and warmup-versus-formal output
+  checks.
+- `lessons/README.md` and `materials/prs/README.md`: indexes updated.
+
+Revision notes:
+
+- The early 39/156/312-frame component A/B is linked to the public frozen
+  reproduction tree and labeled as a different runtime lane; it is not the
+  formal 50 NFE harness.
+- The formal 50 NFE claims link to the public machine-readable evidence; the
+  full formal harness commands and machine-specific execution records stay
+  internal and are not part of the archive.
+- No-audio and audio-retained negative HTTP statuses are recorded explicitly in
+  both arms, and the lossless conclusion is limited to the tested samples.
+- The comparison media is published as a silent GIF derived from the accepted
+  MP4; RGB/PCM metrics come from the original output files.
+
+The archive branch is based on the current public `main` and is pending
+publication. The PR remains Draft; its revised description is prepared but not
+yet posted.
+
+## Previous Update: MiniMax-H3 Streamed Reference-Video Tile Archive
 
 Adds a public PR archive and one lesson for a streamed input stage. No private
 hosts, paths, logs, checkpoints, media, or internal case names are included.

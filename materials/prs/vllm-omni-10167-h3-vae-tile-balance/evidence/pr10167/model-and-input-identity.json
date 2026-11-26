@@ -1,0 +1,291 @@
+{
+  "public_model": "MiniMaxAI/MiniMax-H3",
+  "expected_vae_revision": "42ed227ee7df40d41602854ae760620d6eb651fe",
+  "full_checkpoint_revision": "not independently verified",
+  "components": {
+    "video_vae": {
+      "files": {
+        "func.py": {
+          "bytes": 5840,
+          "sha256": "0612c26a65f095699cc7acd51937cd153584fa5a0476956e46a4679aa575c22d"
+        },
+        "minimax_h3_video_vae.py": {
+          "bytes": 5123,
+          "sha256": "77fdea69a48485b5434f65d08096657b5d78b78b7cdf24e1241038f237720138"
+        },
+        "utils.py": {
+          "bytes": 764,
+          "sha256": "309e45e9d9e33cd5516a10eac2d207eb9f940079a6d9bbe0ee80aaaf7eb42dcd"
+        },
+        "config.json": {
+          "bytes": 1807,
+          "sha256": "3edd2cdd1ebc823c868be55ef917e1b3b8a398fde4d3150dae44a3bf05d9f627"
+        },
+        "vae_cnn.py": {
+          "bytes": 8836,
+          "sha256": "3949b701e6893bd2ea070cd5b18ed8135a7c21d884290df449b1997212d65b11"
+        },
+        "flash.py": {
+          "bytes": 5763,
+          "sha256": "c1918463d303a16f278a670bb4f33d3f8d6f7653b0d473313ff5835699b86d04"
+        },
+        "vae_module.py": {
+          "bytes": 1884,
+          "sha256": "9558fb302e10a619f198e12e04701c68988e897d0b627f958f33d27fd2a30d94"
+        },
+        "base_module.py": {
+          "bytes": 9520,
+          "sha256": "0e7ddf5086179a306298693ac461ffcbc27ccb28dbc786b1a05060de7a3357c0"
+        },
+        "attention.py": {
+          "bytes": 5785,
+          "sha256": "c9db8465c57f0bfb40c0194227be6e34b2c1ff7c5b5d63abca9964eed6283767"
+        },
+        "vae_processor.py": {
+          "bytes": 8369,
+          "sha256": "32870580a1802d9163104a4d68170e35a4772106867181e1bd343dff11f87d2e"
+        },
+        "klvae.py": {
+          "bytes": 48594,
+          "sha256": "d05a22b4918ad303f147d6b0d0ae9038bd1af1f810a5553b04f3542ab9bcff96"
+        },
+        "parallel.py": {
+          "bytes": 12997,
+          "sha256": "7193522beafd65bc3dbe40b9843e360ab8da3a0bb211e9bfb67bb0d5d0e66919"
+        },
+        "conv.py": {
+          "bytes": 4487,
+          "sha256": "b3adee35f27e5d372543242aa86ce5e0138f13b794b6c81f919001e3e2346723"
+        },
+        "normalize.py": {
+          "bytes": 1200,
+          "sha256": "8db651acb9eb551c906a2850bbca8e9d851f00d07b30ccf66ceb6057da687a13"
+        },
+        "norm.py": {
+          "bytes": 10686,
+          "sha256": "258b120ca8d9a16366d7b811fe93eebf98fe1564db0995e8b7747229c651919a"
+        },
+        "vae_vit.py": {
+          "bytes": 13490,
+          "sha256": "a372c28441b56ec2dbc6041dbd6ce2766c64c0e61b2c69a16594a97a11da3f58"
+        },
+        "source/config.json": {
+          "bytes": 1164,
+          "sha256": "66c68f541e6578ce613ce7a0fc985eb59097038829e49f7535e6d08e6d95ab12"
+        },
+        "source/model.safetensors": {
+          "bytes": 10415548320,
+          "sha256": "5f0c2e161d895a9fee7645ca32d4a7e3a22b90cacfcbeba62ec999cdbbefe0d3"
+        }
+      },
+      "indexes": {}
+    },
+    "audio_vae": {
+      "files": {
+        "dac_alias_free_resample.py": {
+          "bytes": 1740,
+          "sha256": "fe35055893833c563e42adc5e5882cbe7628c82d48d33c300fcf0a9576997910"
+        },
+        "dac_utils.py": {
+          "bytes": 362,
+          "sha256": "74ef0ba2c2a11ca35a7c0cc166fe88e564de01230000a0bcc8429103312ad9f0"
+        },
+        "config.json": {
+          "bytes": 1973,
+          "sha256": "d8f3bcc62e23c7e9806970fa63cca6139c06faa3797cf9c94034f60db8512771"
+        },
+        "model.safetensors": {
+          "bytes": 605429308
+        },
+        "minimax_h3_audio_vae.py": {
+          "bytes": 3532,
+          "sha256": "63bc0dab6def69480cfd77ea820f9a9a84fc4bd6e56868e4f45ec1e1e200578f"
+        },
+        "dac_attn_proj.py": {
+          "bytes": 3317,
+          "sha256": "0e04556fa5fd38d4a71e62fcf4d3242fd9a2464fd72ed62baef2ec0980d910c6"
+        },
+        "dac_alias_free_act.py": {
+          "bytes": 835,
+          "sha256": "db8761e66c0eaf9fce2dcccb59162d52b22ca0de9f699cf7d21ec7cd507e86fd"
+        },
+        "dac_alias_free_filter.py": {
+          "bytes": 3300,
+          "sha256": "a369523cd7f14f4f299d8e2e47f3c473da76ed1910e6e9134fd7a9fce02537e8"
+        },
+        "dac_bigvgan.py": {
+          "bytes": 7102,
+          "sha256": "f5df4e6f633e74da479549ef7a6d2684964e4b65ac42c6765be42f9c7fcb7bd2"
+        },
+        "metadata.json": {
+          "bytes": 440,
+          "sha256": "755d0529d43b2b5c83590f6f44ca659bc68e6a21b01d5669c93e8b2965749bff"
+        },
+        "dac_activations.py": {
+          "bytes": 2189,
+          "sha256": "74ca8bb9e8039f1ff362ca4219eee5240a7df9502f3dbdc3161d4e86fbd6dc04"
+        },
+        "dac_audio_vae.py": {
+          "bytes": 7266,
+          "sha256": "ec04939602d4710d039e83f558a7572547669652f7fa967e3de0a3b6c48cfd48"
+        }
+      },
+      "indexes": {}
+    },
+    "text_encoder": {
+      "files": {
+        "model-00011-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "model-00014-of-00014.safetensors": {
+          "bytes": 3270697008
+        },
+        "model-00009-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "model-00013-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "model.safetensors.index.json": {
+          "bytes": 97831,
+          "sha256": "06c952c569285870b811989b794b9766493e280fb77fbcb957fc4e5fcf25403a"
+        },
+        "model-00007-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "vocab.json": {
+          "bytes": 2776833,
+          "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+        },
+        "config.json": {
+          "bytes": 1474,
+          "sha256": "d2dd0c60d01b9e195d9447c52da61c7302d28828524914c044d9c6e1b81d0427"
+        },
+        "model-00010-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "model-00003-of-00014.safetensors": {
+          "bytes": 4875990552
+        },
+        "model-00012-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "model-00002-of-00014.safetensors": {
+          "bytes": 4875990528
+        },
+        "video_preprocessor_config.json": {
+          "bytes": 385,
+          "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+        },
+        "tokenizer.json": {
+          "bytes": 7032403,
+          "sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7"
+        },
+        "model-00005-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "model-00004-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "tokenizer_config.json": {
+          "bytes": 11003,
+          "sha256": "a07e942ac874baa13758de8d1fbdb186683cc03416b5589e1b6671c6b3057c68"
+        },
+        "preprocessor_config.json": {
+          "bytes": 390,
+          "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+        },
+        "model-00001-of-00014.safetensors": {
+          "bytes": 4932328944
+        },
+        "model-00008-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "model-00006-of-00014.safetensors": {
+          "bytes": 4875990584
+        },
+        "chat_template.json": {
+          "bytes": 5499,
+          "sha256": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce"
+        }
+      },
+      "indexes": {
+        "model.safetensors.index.json": {
+          "expected_shards": 14,
+          "present_nonempty_shards": 14
+        }
+      }
+    },
+    "transformer": {
+      "files": {
+        "model-00005-of-00013.safetensors": {
+          "bytes": 5164578896
+        },
+        "model.safetensors.index.json": {
+          "bytes": 38323,
+          "sha256": "fb457a26ffa6294660e249b0ddd03a337f2e5393f770b5c34c8b8f90a29a7efb"
+        },
+        "model-00002-of-00013.safetensors": {
+          "bytes": 5164578856
+        },
+        "config.json": {
+          "bytes": 604,
+          "sha256": "f619093a231fcfbcc3d035bec26c50ad864e7331a500d5c519f5045dc1e50458"
+        },
+        "model-00004-of-00013.safetensors": {
+          "bytes": 5164578896
+        },
+        "model-00006-of-00013.safetensors": {
+          "bytes": 5164578896
+        },
+        "model-00013-of-00013.safetensors": {
+          "bytes": 4242305176
+        },
+        "model-00010-of-00013.safetensors": {
+          "bytes": 5164578896
+        },
+        "model-00008-of-00013.safetensors": {
+          "bytes": 5164578896
+        },
+        "model-00009-of-00013.safetensors": {
+          "bytes": 5164578896
+        },
+        "model-00003-of-00013.safetensors": {
+          "bytes": 5164578872
+        },
+        "model-00012-of-00013.safetensors": {
+          "bytes": 5164578896
+        },
+        "model-00001-of-00013.safetensors": {
+          "bytes": 5227812968
+        },
+        "model-00011-of-00013.safetensors": {
+          "bytes": 5164578896
+        },
+        "model-00007-of-00013.safetensors": {
+          "bytes": 5164578896
+        }
+      },
+      "indexes": {
+        "model.safetensors.index.json": {
+          "expected_shards": 13,
+          "present_nonempty_shards": 13
+        }
+      }
+    }
+  },
+  "inputs": {
+    "ref2va-input.mp4": {
+      "sha256": "d6edc20ac82aa980c9cbd0b05b371f60d12dc8d018492e571b42de0086819c41",
+      "bytes": 4396484
+    },
+    "ref2va-input.mp3": {
+      "sha256": "2a48d447b343b38a2c504d5281a0c97c688db0ba87931ed9282c598bd6752454",
+      "bytes": 204432
+    },
+    "ref2va-prompt.txt": {
+      "sha256": "91c1340ea893aede82312dec30a6ae8c975c1def921348fc1cc45ccc86b315dd",
+      "bytes": 3555
+    }
+  }
+}

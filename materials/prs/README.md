@@ -33,6 +33,13 @@ materials/prs/<repo-or-pr-id>/
   [vllm-project/vllm-omni#11005](https://github.com/vllm-project/vllm-omni/pull/11005),
   overlapping MiniMax-H3 CPU audio preprocessing with visual encoding on the
   Ascend encoder leader.
+- [vllm-omni-10167-h3-vae-tile-balance](vllm-omni-10167-h3-vae-tile-balance/):
+  public-safe archive for
+  [vllm-project/vllm-omni#10167](https://github.com/vllm-project/vllm-omni/pull/10167),
+  cross-clip video VAE tile balancing on Ascend, including the eight-rank
+  native Stage0 hit, the public Ref2VA precision comparison, the formal VAE
+  stage gate, the 50 NFE guard, machine-readable evidence records and a
+  synchronized comparison GIF.
 
 `_example-public-pr/` is a skeleton only, not validation evidence.
 

@@ -114,6 +114,11 @@ datasets.
   the ordinary path, explicit fallbacks, allocator versus device memory naming,
   per-layer A/A calibration, runtime log scope, concurrent workloads, and
   unprivileged container identity.
+- [staged-native-execution-evidence.md](staged-native-execution-evidence.md):
+  the first native operator call as its own rung, signature-preserving
+  instrumentation, a second stage that exits by signal on a clean shutdown,
+  measurement hooks as part of the guard, peak scope as part of the claim, and
+  warmup-versus-formal output checks.
 - [templates/lesson.md](templates/lesson.md): lesson entry template.
 
 ## Promotion Rule

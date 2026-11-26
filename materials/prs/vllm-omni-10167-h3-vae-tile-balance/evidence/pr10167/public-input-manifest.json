@@ -1,0 +1,35 @@
+{
+  "source_commit": "085d7dba33eca00f44753f8c4a5e11bd7c669f38",
+  "source_path": "tests/e2e/accuracy/minimax_h3/test_minimax_h3_i2va_ref2va_similarity.py",
+  "source_sha256": "1d4312efc8aefdabacee1d0ce6d6b0f5b1b56936a833e7802718ae623b0f3f43",
+  "public_prompt_sha256": "91c1340ea893aede82312dec30a6ae8c975c1def921348fc1cc45ccc86b315dd",
+  "requested_parameters": {
+    "WIDTH": 1344,
+    "HEIGHT": 768,
+    "FPS": 24,
+    "REF2VA_NUM_FRAMES": 124,
+    "NUM_INFERENCE_STEPS": 50,
+    "FLOW_SHIFT": 12.0,
+    "AUDIO_FLOW_SHIFT": 3.0,
+    "REF2VA_DURATION_SECONDS": 5.0,
+    "SEED": 0
+  },
+  "media": [
+    {
+      "kind": "VIDEO",
+      "url": "https://cdn.hailuoai.com/prod/hailuo_demo/testsets/h3_promo_eval_ref2va/gallery/sr_v2p26_trio_seed42_20260724/inputs/297573323635_00_%E8%A7%86%E9%A2%911_YnyRbxEwio_video_20260525_163755_1927e9d3.mp4",
+      "expected_sha256": "d6edc20ac82aa980c9cbd0b05b371f60d12dc8d018492e571b42de0086819c41",
+      "actual_sha256": "d6edc20ac82aa980c9cbd0b05b371f60d12dc8d018492e571b42de0086819c41",
+      "size_bytes": 4396484,
+      "verified": true
+    },
+    {
+      "kind": "AUDIO",
+      "url": "https://cdn.hailuoai.com/prod/hailuo_demo/testsets/h3_promo_eval_ref2va/gallery/sr_v2p26_trio_seed42_20260724/inputs/f463d523c5ce_01_%E9%9F%B3%E9%A2%911_RSLcbpzJPo_6%E6%9C%885%E6%97%A5(1).mp3",
+      "expected_sha256": "2a48d447b343b38a2c504d5281a0c97c688db0ba87931ed9282c598bd6752454",
+      "actual_sha256": "2a48d447b343b38a2c504d5281a0c97c688db0ba87931ed9282c598bd6752454",
+      "size_bytes": 204432,
+      "verified": true
+    }
+  ]
+}

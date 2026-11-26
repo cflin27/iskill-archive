@@ -1,0 +1,14 @@
+{
+  "public_source": "Frozen public Ref2VA input manifest",
+  "input_sha256": "d6edc20ac82aa980c9cbd0b05b371f60d12dc8d018492e571b42de0086819c41",
+  "frames_shape": [
+    124,
+    768,
+    1344,
+    3
+  ],
+  "frames_dtype": "uint8",
+  "frames_content_sha256": "454d6f42e876604bff528cacc0f8075adf680d5f62601fb2e5d11d29eff7f558",
+  "npy_sha256": "fa1b92aa2f5c270417f576f455ea393f00beb825994d1f546a346b6798748511",
+  "preparation": "Baseline prepare_reference_videos target_frame_count=124, then load_video_frames; native Stage0 takes a contiguous uint8 CPU tensor of these frames"
+}

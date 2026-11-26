@@ -1,0 +1,1112 @@
+{
+  "metrics": {
+    "wall_seconds": {
+      "median_relative_percent": -0.10468129617760077,
+      "ci95_percent": [
+        -0.23256303604001807,
+        0.24659890672467177
+      ],
+      "paired_relative_percent": [
+        0.35799220046259367,
+        -0.15857710058795138,
+        0.13520561298674988,
+        -0.30654897149208477,
+        -0.12668631855763274,
+        -0.08267627379756881
+      ],
+      "median_absolute_difference": -0.3128930403618142,
+      "baseline": {
+        "n": 6,
+        "mean": 299.1291819215209,
+        "median": 299.05745190859307,
+        "minimum": 298.44645922095515,
+        "maximum": 300.2326396589633,
+        "raw": [
+          298.91790032503195,
+          300.2326396589633,
+          298.7833708978724,
+          299.1977179341484,
+          299.1970034921542,
+          298.44645922095515
+        ]
+      },
+      "candidate": {
+        "n": 6,
+        "mean": 299.03834872723866,
+        "median": 299.00265230459627,
+        "minimum": 298.1997148091905,
+        "maximum": 299.9880030939821,
+        "raw": [
+          299.9880030939821,
+          299.75653944397345,
+          299.1873427859973,
+          298.28053040709347,
+          298.8179618231952,
+          298.1997148091905
+        ]
+      },
+      "threshold_percent": 3.0,
+      "verdict": "pass"
+    },
+    "stage1_peak_allocated_bytes": {
+      "median_relative_percent": 0.0,
+      "ci95_percent": [
+        0.0,
+        0.0
+      ],
+      "paired_relative_percent": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "median_absolute_difference": 0.0,
+      "baseline": {
+        "n": 6,
+        "mean": 20413809152.0,
+        "median": 20413809152.0,
+        "minimum": 20413809152.0,
+        "maximum": 20413809152.0,
+        "raw": [
+          20413809152.0,
+          20413809152.0,
+          20413809152.0,
+          20413809152.0,
+          20413809152.0,
+          20413809152.0
+        ]
+      },
+      "candidate": {
+        "n": 6,
+        "mean": 20413809152.0,
+        "median": 20413809152.0,
+        "minimum": 20413809152.0,
+        "maximum": 20413809152.0,
+        "raw": [
+          20413809152.0,
+          20413809152.0,
+          20413809152.0,
+          20413809152.0,
+          20413809152.0,
+          20413809152.0
+        ]
+      },
+      "threshold_percent": 1.0,
+      "verdict": "pass"
+    },
+    "stage1_peak_reserved_bytes": {
+      "median_relative_percent": 0.0,
+      "ci95_percent": [
+        0.0,
+        0.0
+      ],
+      "paired_relative_percent": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "median_absolute_difference": 0.0,
+      "baseline": {
+        "n": 6,
+        "mean": 21343414954.666668,
+        "median": 21420310528.0,
+        "minimum": 21189623808.0,
+        "maximum": 21420310528.0,
+        "raw": [
+          21420310528.0,
+          21189623808.0,
+          21420310528.0,
+          21420310528.0,
+          21189623808.0,
+          21420310528.0
+        ]
+      },
+      "candidate": {
+        "n": 6,
+        "mean": 21343414954.666668,
+        "median": 21420310528.0,
+        "minimum": 21189623808.0,
+        "maximum": 21420310528.0,
+        "raw": [
+          21420310528.0,
+          21189623808.0,
+          21420310528.0,
+          21420310528.0,
+          21189623808.0,
+          21420310528.0
+        ]
+      },
+      "threshold_percent": 1.0,
+      "verdict": "pass"
+    },
+    "two_stage_peak_allocated_bound_bytes": {
+      "median_relative_percent": 0.06025172725301374,
+      "ci95_percent": [
+        0.05788139787251757,
+        0.06265655575404357
+      ],
+      "paired_relative_percent": [
+        0.057851761871675504,
+        0.05791103387335964,
+        0.05791103387335964,
+        0.06259242063266784,
+        0.06265655575404357,
+        0.06265655575404357
+      ],
+      "median_absolute_difference": 41676288.0,
+      "baseline": {
+        "n": 6,
+        "mean": 69157224960.0,
+        "median": 69136890368.0,
+        "minimum": 69130336768.0,
+        "maximum": 69207724544.0,
+        "raw": [
+          69207724544.0,
+          69136890368.0,
+          69136890368.0,
+          69201170944.0,
+          69130336768.0,
+          69130336768.0
+        ]
+      },
+      "candidate": {
+        "n": 6,
+        "mean": 69198901248.0,
+        "median": 69176928256.0,
+        "minimum": 69173651456.0,
+        "maximum": 69247762432.0,
+        "raw": [
+          69247762432.0,
+          69176928256.0,
+          69176928256.0,
+          69244485632.0,
+          69173651456.0,
+          69173651456.0
+        ]
+      },
+      "threshold_percent": 1.0,
+      "verdict": "pass"
+    },
+    "two_stage_peak_reserved_bound_bytes": {
+      "median_relative_percent": -0.005978179644298311,
+      "ci95_percent": [
+        -0.005984440588769929,
+        -0.0059755005815155604
+      ],
+      "paired_relative_percent": [
+        -0.005978179644298311,
+        -0.00597460791635549,
+        -0.005983545250560957,
+        -0.005978179644298311,
+        -0.005976393246675631,
+        -0.005985335926978902
+      ],
+      "median_absolute_difference": -4194304.0,
+      "baseline": {
+        "n": 6,
+        "mean": 70146239146.66667,
+        "median": 70160220160.0,
+        "minimum": 70076334080.0,
+        "maximum": 70202163200.0,
+        "raw": [
+          70160220160.0,
+          70202163200.0,
+          70097305600.0,
+          70160220160.0,
+          70181191680.0,
+          70076334080.0
+        ]
+      },
+      "candidate": {
+        "n": 6,
+        "mean": 70142044842.66667,
+        "median": 70156025856.0,
+        "minimum": 70072139776.0,
+        "maximum": 70197968896.0,
+        "raw": [
+          70156025856.0,
+          70197968896.0,
+          70093111296.0,
+          70156025856.0,
+          70176997376.0,
+          70072139776.0
+        ]
+      },
+      "threshold_percent": 1.0,
+      "verdict": "pass"
+    }
+  },
+  "rounds": {
+    "wall_seconds": {
+      "AB": {
+        "median_relative_percent": 0.13520561298674988,
+        "ci95_percent": [
+          -0.15857710058795138,
+          0.35799220046259367
+        ],
+        "paired_relative_percent": [
+          0.35799220046259367,
+          -0.15857710058795138,
+          0.13520561298674988
+        ],
+        "median_absolute_difference": 0.4039718881249428
+      },
+      "BA": {
+        "median_relative_percent": -0.12668631855763274,
+        "ci95_percent": [
+          -0.30654897149208477,
+          -0.08267627379756881
+        ],
+        "paired_relative_percent": [
+          -0.30654897149208477,
+          -0.12668631855763274,
+          -0.08267627379756881
+        ],
+        "median_absolute_difference": -0.37904166895896196
+      }
+    },
+    "stage1_peak_allocated_bytes": {
+      "AB": {
+        "median_relative_percent": 0.0,
+        "ci95_percent": [
+          0.0,
+          0.0
+        ],
+        "paired_relative_percent": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median_absolute_difference": 0.0
+      },
+      "BA": {
+        "median_relative_percent": 0.0,
+        "ci95_percent": [
+          0.0,
+          0.0
+        ],
+        "paired_relative_percent": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median_absolute_difference": 0.0
+      }
+    },
+    "stage1_peak_reserved_bytes": {
+      "AB": {
+        "median_relative_percent": 0.0,
+        "ci95_percent": [
+          0.0,
+          0.0
+        ],
+        "paired_relative_percent": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median_absolute_difference": 0.0
+      },
+      "BA": {
+        "median_relative_percent": 0.0,
+        "ci95_percent": [
+          0.0,
+          0.0
+        ],
+        "paired_relative_percent": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "median_absolute_difference": 0.0
+      }
+    },
+    "two_stage_peak_allocated_bound_bytes": {
+      "AB": {
+        "median_relative_percent": 0.05791103387335964,
+        "ci95_percent": [
+          0.057851761871675504,
+          0.05791103387335964
+        ],
+        "paired_relative_percent": [
+          0.057851761871675504,
+          0.05791103387335964,
+          0.05791103387335964
+        ],
+        "median_absolute_difference": 40037888.0
+      },
+      "BA": {
+        "median_relative_percent": 0.06265655575404357,
+        "ci95_percent": [
+          0.06259242063266784,
+          0.06265655575404357
+        ],
+        "paired_relative_percent": [
+          0.06259242063266784,
+          0.06265655575404357,
+          0.06265655575404357
+        ],
+        "median_absolute_difference": 43314688.0
+      }
+    },
+    "two_stage_peak_reserved_bound_bytes": {
+      "AB": {
+        "median_relative_percent": -0.005978179644298311,
+        "ci95_percent": [
+          -0.005983545250560957,
+          -0.00597460791635549
+        ],
+        "paired_relative_percent": [
+          -0.005978179644298311,
+          -0.00597460791635549,
+          -0.005983545250560957
+        ],
+        "median_absolute_difference": -4194304.0
+      },
+      "BA": {
+        "median_relative_percent": -0.005978179644298311,
+        "ci95_percent": [
+          -0.005985335926978902,
+          -0.005976393246675631
+        ],
+        "paired_relative_percent": [
+          -0.005978179644298311,
+          -0.005976393246675631,
+          -0.005985335926978902
+        ],
+        "median_absolute_difference": -4194304.0
+      }
+    }
+  },
+  "aggregation": "Six formal pairs in AB and BA order, each block independently warmed up. Paired percentile bootstrap median CI, 10000 resamples, RNG 0.",
+  "formal_latent_hash_equal": true,
+  "formal_latent_array_comparisons": [
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 1,
+      "logical_card": 0,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 1,
+      "logical_card": 1,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 1,
+      "logical_card": 2,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 1,
+      "logical_card": 3,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 1,
+      "logical_card": 4,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 1,
+      "logical_card": 5,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 1,
+      "logical_card": 6,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 1,
+      "logical_card": 7,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 2,
+      "logical_card": 0,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 2,
+      "logical_card": 1,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 2,
+      "logical_card": 2,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 2,
+      "logical_card": 3,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 2,
+      "logical_card": 4,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 2,
+      "logical_card": 5,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 2,
+      "logical_card": 6,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 2,
+      "logical_card": 7,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 3,
+      "logical_card": 0,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 3,
+      "logical_card": 1,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 3,
+      "logical_card": 2,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 3,
+      "logical_card": 3,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 3,
+      "logical_card": 4,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 3,
+      "logical_card": 5,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 3,
+      "logical_card": 6,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eab0",
+      "candidate_case": "candidate-native-verified-e2eab1",
+      "index": 3,
+      "logical_card": 7,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 1,
+      "logical_card": 0,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 1,
+      "logical_card": 1,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 1,
+      "logical_card": 2,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 1,
+      "logical_card": 3,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 1,
+      "logical_card": 4,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 1,
+      "logical_card": 5,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 1,
+      "logical_card": 6,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 1,
+      "logical_card": 7,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 2,
+      "logical_card": 0,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 2,
+      "logical_card": 1,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 2,
+      "logical_card": 2,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 2,
+      "logical_card": 3,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 2,
+      "logical_card": 4,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 2,
+      "logical_card": 5,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 2,
+      "logical_card": 6,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 2,
+      "logical_card": 7,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 3,
+      "logical_card": 0,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 3,
+      "logical_card": 1,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 3,
+      "logical_card": 2,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 3,
+      "logical_card": 3,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 32,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 3,
+      "logical_card": 4,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 3,
+      "logical_card": 5,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 3,
+      "logical_card": 6,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    },
+    {
+      "baseline_case": "baseline-native-verified-e2eba3",
+      "candidate_case": "candidate-native-verified-e2eba2",
+      "index": 3,
+      "logical_card": 7,
+      "shape": [
+        37296,
+        96
+      ],
+      "sha256": "041964e42d4082bc928390c7e4d7ab73f3b8e2e5d197267c2375bf16f97ef0eb",
+      "bitwise_equal": true,
+      "max_abs_difference": 0.0,
+      "baseline_forward_calls": 24,
+      "candidate_forward_calls": 28
+    }
+  ],
+  "threshold_source": "Default 3% for E2E time; no matching E2E A/A. Must calibrate A/A before declaring regression.",
+  "memory_scope": "Stage1 pipeline forward peaks measured separately. Each window synchronizes and resets allocator peaks before the call, captures peaks before every nested reset, and reads after final device synchronization. Stage0 text and VAE windows use the same boundary. Two-stage bound sums per-process Stage0 and Stage1 request peaks on each logical card, then takes the largest card. This is a conservative allocator bound, not a simultaneous device HBM peak. Initialization, driver memory and uninstrumented allocations are excluded. The 1% bound check is conservative supporting evidence, not a measured device-HBM gate."
+}
