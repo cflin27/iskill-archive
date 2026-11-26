@@ -31,6 +31,6 @@ Rebuild it from the accepted MP4:
 bash gif.sh pr10167-ref2va-formal-comparison.mp4 pr10167-ref2va-formal-comparison.gif
 ```
 
-The source MP4 is the silent comparison exported by the formal validation. The
+The formal comparison MP4 contains stereo AAC audio. The GIF export strips the audio track. The
 paired original outputs are not published here; the public input sources and the
 measured setup are recorded in [`../validation-and-benefit.md`](../validation-and-benefit.md).

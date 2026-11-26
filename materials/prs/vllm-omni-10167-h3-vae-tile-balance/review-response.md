@@ -5,8 +5,8 @@
 - Link: [vllm-project/vllm-omni#10167](https://github.com/vllm-project/vllm-omni/pull/10167)
 - Public base: `b7bbfbdb4f2b3c070d9632043ea6cd2b1c601270`
 - Updated commit: `bc70adc0509f2b05832389e529b8f8082e88f358`
-- State at archive time: open, Draft. The revised body and this archive branch
-  are prepared for publication; the revised body has not yet been posted.
+- PR state at publication: open, Draft. The PR description links to the formal
+  validation evidence and side-by-side comparison.
 
 ## Comments Addressed
 

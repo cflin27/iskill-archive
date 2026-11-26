@@ -39,7 +39,7 @@ Two measurement sets are reported and are **not interchangeable**:
 | Both arms | Same compiled Ascend wheel `514d465e7e8310529921a976773575c6aebf234d934b94fb58a99100b7e31942`; server CPUs 0–31 and HTTP client CPUs 32–35 fixed in both arms |
 | Topology | Stage0 TP8, video patch parallel 8, encoder role; Stage1 USP8, VAE patch parallel 8; layerwise offload for DiT and all-gather, eager, streaming tile off |
 | Output request | 1344×768, 24 fps, 5 s requested, seed 0, flow shift 12, audio flow shift 3, 50 NFE |
-| VAE workload | Native 124×768×1344 contiguous uint8 input, SHA-256 `454d6f42e876604bff528cacc0f8075adf680d5f62601fb2e5d11d29eff7f558`, seed 42 |
+| VAE workload | Native 124×768×1344×3 contiguous uint8 RGB input, frame-content SHA-256 `454d6f42e876604bff528cacc0f8075adf680d5f62601fb2e5d11d29eff7f558`, seed 42 |
 | Candidate option | `additional_config={"h3_vae_encode_tile_balance_max_tasks":168}`; baseline `{}` |
 
 Both arms enabled the same light measurement and parity-export hooks. The
@@ -95,8 +95,8 @@ FP32, expandable segments on, deterministic algorithms off. Two warmups plus
 three unprofiled requests per length; each sample is the eight-rank maximum and
 the table uses the three-sample arithmetic mean. The wall timer covers model and
 input load, frame preparation and encode, CPU latent processing, offload and
-synchronization. The 39-frame case was produced from the public reference video
-by resampling and then looping it to 39 raw frames.
+synchronization. The public reference video was resampled to 39 frames and repeated to
+produce the 156- and 312-frame inputs.
 
 | Raw frames | Baseline mean ms | Candidate mean ms | Reduction | Forwards per rank, before → after |
 | ---: | ---: | ---: | ---: | --- |
@@ -123,7 +123,7 @@ The archive publishes a synchronized side-by-side comparison GIF
 baseline on the left, candidate on the right, 672×192, 124 frames at 24 fps,
 7,017,781 bytes, SHA-256
 `272b0c9e0ab0866db3d4b57691773d078547a414498b8d264df9a0871011a24f`. It was
-derived from the 562,319-byte silent comparison MP4 (SHA-256
+derived from the 562,319-byte comparison MP4 (SHA-256
 `681c8c2fd50b51f986a8cfd61a791a1e898e1660e60ffd7679c93167f14731ac`) and has no
 audio track. The GIF is presentation-only: the reported RGB, PSNR, SSIM and PCM
 values were measured on the original decoded outputs, never on this file. See

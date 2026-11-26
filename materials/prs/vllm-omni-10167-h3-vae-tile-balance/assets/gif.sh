@@ -7,9 +7,9 @@ set -euo pipefail
 source_file=${1:-pr10167-ref2va-formal-comparison.mp4}
 output_file=${2:-pr10167-ref2va-formal-comparison.gif}
 
-# FFmpeg 9 uses -fps_mode; FFmpeg 4.x/5.x/6.x use -vsync 0 instead.
+# Prefer -fps_mode and fall back to -vsync on older FFmpeg builds.
 fps_mode=(-fps_mode passthrough)
-if ! ffmpeg -hide_banner -h full 2>/dev/null | grep -q -- '-fps_mode'; then
+if ! ffmpeg -hide_banner -h full 2>/dev/null | grep -- '-fps_mode' >/dev/null; then
   fps_mode=(-vsync 0)
 fi
 

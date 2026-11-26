@@ -10,8 +10,8 @@ a time in rank-local order.
 
 - Public base: `b7bbfbdb4f2b3c070d9632043ea6cd2b1c601270`
 - Validated candidate: `bc70adc0509f2b05832389e529b8f8082e88f358`
-- State at archive time: open, Draft. The revised PR body and this archive
-  branch are prepared for publication; the PR body has not yet been posted.
+- PR state at publication: open, Draft. See the PR description for the validation
+  results and side-by-side comparison.
 - Result: the balance path executes on all eight native Stage0 ranks, the
   formal VAE stage drops from 4177.600 to 3669.504 ms (paired median −12.1474%,
   95% CI [−12.2274%, −12.1153%]), the production 50 NFE guard passes at
@@ -36,8 +36,8 @@ a time in rank-local order.
   `vae.py`, `pipeline_minimax_h3.py`, `encoder.py`
 - Tests: `tests/diffusion/models/minimax_h3/test_minimax_h3_vae_tile_balance.py` (new),
   `tests/model_executor/models/test_minimax_h3_encoder_payload.py`
-- Documentation: `recipes/MiniMaxAI/MiniMax-H3-NPU.md` at the base commit
-  ([pinned recipe](https://github.com/vllm-project/vllm-omni/blob/b7bbfbdb4f2b3c070d9632043ea6cd2b1c601270/recipes/MiniMaxAI/MiniMax-H3-NPU.md))
+- Documentation: `recipes/MiniMaxAI/MiniMax-H3-NPU.md` at the candidate commit
+  ([pinned recipe](https://github.com/cflin27/vllm-omni/blob/bc70adc0509f2b05832389e529b8f8082e88f358/recipes/MiniMaxAI/MiniMax-H3-NPU.md))
 - Public input fixture:
   [`tests/e2e/accuracy/minimax_h3/test_minimax_h3_i2va_ref2va_similarity.py`](https://github.com/cflin27/vllm-omni/blob/085d7dba33eca00f44753f8c4a5e11bd7c669f38/tests/e2e/accuracy/minimax_h3/test_minimax_h3_i2va_ref2va_similarity.py)
   at the pinned input-definition commit (`REF2VA_PROMPT`, `REF2VA_INPUT_VIDEO_URL`,
