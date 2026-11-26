@@ -38,7 +38,8 @@ encode-only video VAE. When it is set and the encode is eligible, the scheduler:
 6. Reassembles the original global order, blends each clip exactly as the
    native path would, and concatenates the clips in temporal order.
 
-`max_tasks=168` holds two clips for the common 84-tile grid. Larger windows
+`max_tasks=168` holds six clips of the tested 28-tile grid, so the eight-clip
+request runs as a 168-task full window and a 56-task tail window. Larger windows
 improve balance but retain more encoded tiles until the gather; the recipe
 documents that trade-off.
 
